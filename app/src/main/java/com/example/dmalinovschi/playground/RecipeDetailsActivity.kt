@@ -25,7 +25,6 @@ class RecipeDetailsActivity : AppCompatActivity() {
         var extras : Bundle = intent.extras
         if (true) {
          var recipe : RecipeDetailsModel = extras.getSerializable("RECIPE") as RecipeDetailsModel
-            supportActionBar!!.title = recipe.title;
             ricepe_ingredients_recycle_view.adapter = RecipeIngredientsAdapter(appDatabase, recipe)
             recipe_preparation_guide_recucle_view.adapter =  RecipePreparationStepsAdapter(appDatabase, recipe)
 
