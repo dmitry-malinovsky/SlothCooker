@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:maxHeight="80dp"
+    android:background="#FFFFFF"
+    android:layout_marginBottom="8dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp">
+
+    <TextView
+        android:id="@+id/recipeTitle_textView"
+        android:layout_width="0dp"
+        android:layout_height="22dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:text="Placeholder" />
+
+    <ImageView
+        android:id="@+id/protein_ivageView"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recipeTitle_textView"
+        app:srcCompat="@mipmap/ic_launcher_round" />
+
+    <ImageView
+        android:id="@+id/carbs_ivageView"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@+id/protein_ivageView"
+        app:layout_constraintTop_toBottomOf="@+id/recipeTitle_textView"
+        app:srcCompat="@mipmap/ic_launcher_round"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/fat_imageView"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@+id/carbs_ivageView"
+        app:layout_constraintTop_toBottomOf="@+id/recipeTitle_textView"
+        app:srcCompat="@mipmap/ic_launcher_round"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/calories_imageView"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@+id/fat_imageView"
+        app:layout_constraintTop_toBottomOf="@+id/recipeTitle_textView"
+        app:srcCompat="@mipmap/ic_launcher_round"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/protein_textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="123"
+        app:layout_constraintStart_toEndOf="@+id/protein_ivageView"
+        app:layout_constraintTop_toBottomOf="@+id/recipeTitle_textView"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/carbs_textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="123"
+        app:layout_constraintStart_toEndOf="@+id/carbs_ivageView"
+        app:layout_constraintTop_toBottomOf="@+id/recipeTitle_textView"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/fat_textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="123"
+        app:layout_constraintStart_toEndOf="@+id/fat_imageView"
+        app:layout_constraintTop_toBottomOf="@+id/recipeTitle_textView"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/calories_textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="123"
+        app:layout_constraintStart_toEndOf="@+id/calories_imageView"
+        app:layout_constraintTop_toBottomOf="@+id/recipeTitle_textView" />
+
+</android.support.constraint.ConstraintLayout>
