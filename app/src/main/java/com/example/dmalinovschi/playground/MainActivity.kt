@@ -1,7 +1,9 @@
 package com.example.dmalinovschi.playground
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.support.design.widget.NavigationView
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
@@ -17,6 +19,9 @@ import com.example.dmalinovschi.playground.persistance.models.Recipes
 import com.example.dmalinovschi.viewModels.RecipeFeed.RecipeListModel
 import com.example.dmalinovschi.viewModels.RecipeFeed.RecipeRowModel
 import kotlinx.android.synthetic.main.activity_main.*
+import android.support.v4.widget.SwipeRefreshLayout
+import android.util.Log
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -42,7 +47,6 @@ class MainActivity : AppCompatActivity() {
         appDatabase = AppDatabase.getInMemoryDatabase(this)
         populateDb(appDatabase)
 
-        println("THIS IS MY STRING +++++++++++++++++++++++++++++++++++++++++++++++")
 
         var recipes: List<Recipes> = appDatabase.recipesModel().allRecipes
         var temp : MutableList<RecipeRowModel> = mutableListOf()
@@ -71,24 +75,19 @@ class MainActivity : AppCompatActivity() {
             recyclerView_main.setBackgroundColor(Color.GRAY)
         }
 
-        mDrawerLayout.addDrawerListener(
-                object : DrawerLayout.DrawerListener {
-                    override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
-                        // Respond when the drawer's position changes
-                    }
 
-                    override fun onDrawerOpened(drawerView: View) {
-                        // Respond when the drawer is opened
-                    }
+        val navigationView: NavigationView = findViewById(R.id.nav_view)
+        navigationView.setNavigationItemSelectedListener { menuItem ->
+            // set item as selected to persist highlight
+            menuItem.isChecked = true
+            // close drawer when item is tapped
+            mDrawerLayout.closeDrawers()
 
-                    override fun onDrawerClosed(drawerView: View) {
-                        // Respond when the drawer is closed
-                    }
-
-                    override fun onDrawerStateChanged(newState: Int) {
-                        // Respond when the drawer motion state changes
-                    }
-                })
+            // Add code here to update the UI based on the item selected
+            // For example, swap UI fragments here
+            startActivity(Intent(this, IngredientsActivity::class.java))
+            true
+        }
     }
 
 

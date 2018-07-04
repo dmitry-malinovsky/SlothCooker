@@ -30,8 +30,6 @@ class MainAdapter(private var data: AppDatabase, var recipeListModel: RecipeList
         view.fat_textView.text = recipe?.totalFat.toString()
         view.calories_textView.text = recipe?.totalCcal.toString()
 
-        //get ingredients and it's weights
-//        data.ingredientModel().getAllIngredientsByRecipeId(recipe.id)
         val allCombinations = data.recipesIngredientsCombinationDao().getAllCombinationsByRecipeId(recipe?.id!!)
         var temp: MutableList<RecipeIngredientsRowModel> = mutableListOf()
         var tempPreparationSteps: MutableList<RecipeDetailsPreparationListItemModel> = mutableListOf()
@@ -43,7 +41,6 @@ class MainAdapter(private var data: AppDatabase, var recipeListModel: RecipeList
         }
 
         holder.reicpeDetails = RecipeDetailsModel(RecipeIngredientsListModel(temp), recipe.title, RecipeDetailsPreparationListModel(tempPreparationSteps))
-
 
     }
 
@@ -67,9 +64,14 @@ class RecipesListViewHolder(view: View, var reicpeDetails: RecipeDetailsModel? =
 
     init {
         view.setOnClickListener {
+            getRecipeDetails()
             val intent = Intent(view.context, RecipeDetailsActivity::class.java)
             intent.putExtra(RECIPE_KEY, reicpeDetails)
             view.context.startActivity(intent)
         }
+    }
+
+    fun getRecipeDetails(){
+        println("ITEM IS CLICKED")
     }
 }
