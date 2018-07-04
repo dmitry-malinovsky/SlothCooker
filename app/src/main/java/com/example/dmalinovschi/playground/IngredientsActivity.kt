@@ -18,7 +18,7 @@ import com.example.dmalinovschi.viewModels.RecipeFeed.RecipeRowModel
 import kotlinx.android.synthetic.main.ingredients_activity.*
 import kotlinx.android.synthetic.main.recipe_details_activity.*
 
-class IngredientsActivity : AppCompatActivity() {
+class IngredientsActivity : RecipesActivity() {
 
     private lateinit var appDatabase: AppDatabase
 

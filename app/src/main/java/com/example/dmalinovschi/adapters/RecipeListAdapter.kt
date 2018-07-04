@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import com.example.dmalinovschi.playground.R
 import com.example.dmalinovschi.playground.RecipeDetailsActivity
 import com.example.dmalinovschi.playground.persistance.AppDatabase
-import com.example.dmalinovschi.viewModels.RecipeDetails.RecipeDetailsModel
 import com.example.dmalinovschi.viewModels.RecipeDetails.RecipeDetailsIngredients.RecipeIngredientsListModel
 import com.example.dmalinovschi.viewModels.RecipeDetails.RecipeDetailsIngredients.RecipeIngredientsRowModel
+import com.example.dmalinovschi.viewModels.RecipeDetails.RecipeDetailsModel
 import com.example.dmalinovschi.viewModels.RecipeDetails.RecipeDetailsPreparation.RecipeDetailsPreparationListItemModel
 import com.example.dmalinovschi.viewModels.RecipeDetails.RecipeDetailsPreparation.RecipeDetailsPreparationListModel
 import com.example.dmalinovschi.viewModels.RecipeFeed.RecipeListModel
@@ -36,11 +36,24 @@ class MainAdapter(private var data: AppDatabase, var recipeListModel: RecipeList
         for (combination in allCombinations) {
             var ingredientWeight: Int = combination.weight
 
-            temp.add(RecipeIngredientsRowModel(data.ingredientModel().getIngredientById(combination.ingredientId).ingredientTitle, ingredientWeight, combination.measurementType))
-            tempPreparationSteps.add(RecipeDetailsPreparationListItemModel(combination.executionOrder, combination.action, data.ingredientModel().getIngredientById(combination.ingredientId), combination.weight))
+            temp.add(RecipeIngredientsRowModel(
+                    data.ingredientModel().getIngredientById(combination.ingredientId).ingredientTitle,
+                    ingredientWeight,
+                    combination.measurementType
+            ))
+            tempPreparationSteps.add(RecipeDetailsPreparationListItemModel(
+                    combination.executionOrder,
+                    combination.action,
+                    data.ingredientModel().getIngredientById(combination.ingredientId),
+                    combination.weight
+            ))
         }
 
-        holder.reicpeDetails = RecipeDetailsModel(RecipeIngredientsListModel(temp), recipe.title, RecipeDetailsPreparationListModel(tempPreparationSteps))
+        holder.reicpeDetails = RecipeDetailsModel(
+                RecipeIngredientsListModel(temp),
+                recipe.title,
+                RecipeDetailsPreparationListModel(tempPreparationSteps)
+        )
 
     }
 
@@ -71,7 +84,7 @@ class RecipesListViewHolder(view: View, var reicpeDetails: RecipeDetailsModel? =
         }
     }
 
-    fun getRecipeDetails(){
+    fun getRecipeDetails() {
         println("ITEM IS CLICKED")
     }
 }
