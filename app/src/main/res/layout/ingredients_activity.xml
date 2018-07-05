@@ -10,9 +10,6 @@
 
     <!-- Layout to contain contents of main body of screen (drawer will slide over this) -->
 
-
-
-
     <FrameLayout
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
@@ -31,8 +28,16 @@
             android:layout_height="match_parent"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="50dp"
-            android:background="#ECEFF1" />
+            android:background="#ECEFF1"
+            android:paddingTop="10dp" />
 
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/add_ingredient_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:src="@drawable/ic_round_add_24px"
+            android:layout_margin="16dp" />
     </FrameLayout>
 
     <android.support.design.widget.NavigationView

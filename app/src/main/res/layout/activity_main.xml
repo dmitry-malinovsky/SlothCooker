@@ -5,18 +5,14 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RecipesActivity"
-    android:background="#ECEFF1">
+    android:background="#ECEFF1"
+    tools:context=".RecipesActivity">
 
     <!-- Layout to contain contents of main body of screen (drawer will slide over this) -->
-
-
-
-
     <FrameLayout
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -31,8 +27,8 @@
             android:layout_height="match_parent"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="50dp"
-            android:background="#ECEFF1" />
-
+            android:background="#ECEFF1"
+            android:paddingTop="10dp" />
 
 
     </FrameLayout>

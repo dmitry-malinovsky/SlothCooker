@@ -1,24 +1,20 @@
 package com.example.dmalinovschi.playground
 
+import android.content.Intent
 import android.os.Bundle
-import android.support.v4.widget.DrawerLayout
-import android.support.v7.app.ActionBar
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.Toolbar
 import com.example.dmalinovschi.adapters.IngredientsListAdapter
-import com.example.dmalinovschi.adapters.RecipeIngredientsAdapter
 import com.example.dmalinovschi.playground.persistance.AppDatabase
 import com.example.dmalinovschi.playground.persistance.models.Ingredients
-import com.example.dmalinovschi.playground.persistance.models.Recipes
 import com.example.dmalinovschi.viewModels.Ingredients.IngredientsListModel
 import com.example.dmalinovschi.viewModels.Ingredients.IngredientsListRowModel
-import com.example.dmalinovschi.viewModels.RecipeFeed.RecipeListModel
-import com.example.dmalinovschi.viewModels.RecipeFeed.RecipeRowModel
 import kotlinx.android.synthetic.main.ingredients_activity.*
-import kotlinx.android.synthetic.main.recipe_details_activity.*
+import android.support.design.widget.Snackbar
+import android.support.design.widget.FloatingActionButton
+import android.view.View
 
-class IngredientsActivity : RecipesActivity() {
+
+open class IngredientsActivity : MainActivity() {
 
     private lateinit var appDatabase: AppDatabase
 
@@ -26,20 +22,9 @@ class IngredientsActivity : RecipesActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.ingredients_activity)
-
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
-
-        val actionbar: ActionBar? = supportActionBar
-        actionbar?.apply {
-            setDisplayHomeAsUpEnabled(true)
-            setHomeAsUpIndicator(R.drawable.ic_menu)
-        }
-
-
+        setToolbar()
 
         appDatabase = AppDatabase.getInMemoryDatabase(this)
-
 
         var ingredients: List<Ingredients> = appDatabase.ingredientModel().allIngredients
         var temp: MutableList<IngredientsListRowModel> = mutableListOf()
@@ -56,5 +41,9 @@ class IngredientsActivity : RecipesActivity() {
         ingredients_recycle_view.layoutManager = LinearLayoutManager(this)
         ingredients_recycle_view.adapter = IngredientsListAdapter(appDatabase, ingredientsListModel)
 
+        val fab = findViewById<FloatingActionButton>(R.id.add_ingredient_fab)
+        fab.setOnClickListener {
+            startActivity(Intent(this,CreateIngredientActivity::class.java ))
+        }
     }
 }

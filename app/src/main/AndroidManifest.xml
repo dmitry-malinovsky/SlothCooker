@@ -9,6 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".MainActivity">
+
+        </activity>
+
         <activity android:name=".RecipesActivity"
             android:launchMode="singleTop"
             android:label="My recipes">
@@ -26,6 +30,14 @@
         <meta-data android:name="android.support.PARENT_ACTIVITY"
             android:value=".RecipesActivity"/>
          </activity>
+
+        <activity
+            android:name=".CreateIngredientActivity"
+            android:label="Add ingredient"
+            android:launchMode="singleTop">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".IngredientsActivity"/>
+        </activity>
 
         <activity
             android:name=".IngredientsActivity"
