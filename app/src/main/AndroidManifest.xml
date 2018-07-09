@@ -9,11 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.example.dmalinovschi.activities.MainActivity">
 
         </activity>
 
-        <activity android:name=".RecipesActivity"
+        <activity android:name="com.example.dmalinovschi.activities.RecipesActivity"
             android:launchMode="singleTop"
             android:label="My recipes">
             <intent-filter>
@@ -24,27 +24,27 @@
         </activity>
 
         <activity
-            android:name=".RecipeDetailsActivity"
+            android:name="com.example.dmalinovschi.activities.RecipeDetailsActivity"
             android:label="Recipe Details"
             android:launchMode="singleTop">
         <meta-data android:name="android.support.PARENT_ACTIVITY"
-            android:value=".RecipesActivity"/>
+            android:value="com.example.dmalinovschi.activities.RecipesActivity"/>
          </activity>
 
         <activity
-            android:name=".CreateIngredientActivity"
+            android:name="com.example.dmalinovschi.activities.CreateIngredientActivity"
             android:label="Add ingredient"
             android:launchMode="singleTop">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".IngredientsActivity"/>
+                android:value="com.example.dmalinovschi.activities.IngredientsActivity"/>
         </activity>
 
         <activity
-            android:name=".IngredientsActivity"
+            android:name="com.example.dmalinovschi.activities.IngredientsActivity"
             android:label="Ingredients"
             android:launchMode="singleTop">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".RecipesActivity"/>
+                android:value="com.example.dmalinovschi.activities.RecipesActivity"/>
         </activity>
     </application>
 

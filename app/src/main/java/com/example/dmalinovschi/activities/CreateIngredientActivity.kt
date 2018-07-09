@@ -1,6 +1,7 @@
-package com.example.dmalinovschi.playground
+package com.example.dmalinovschi.activities
 
 import android.os.Bundle
+import com.example.dmalinovschi.playground.R
 
 class CreateIngredientActivity : IngredientsActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {

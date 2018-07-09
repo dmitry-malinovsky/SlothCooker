@@ -1,4 +1,4 @@
-package com.example.dmalinovschi.playground.persistance.models;
+package com.example.dmalinovschi.persistance.models;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;

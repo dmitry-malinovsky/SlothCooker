@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ECEFF1"
-    tools:context=".RecipesActivity">
+    tools:context="com.example.dmalinovschi.activities.RecipesActivity">
 
     <!-- Layout to contain contents of main body of screen (drawer will slide over this) -->
     <FrameLayout

@@ -1,14 +1,17 @@
-package com.example.dmalinovschi.playground.persistance;
+package com.example.dmalinovschi.persistance;
 
 import android.os.AsyncTask;
 
-import com.example.dmalinovschi.playground.persistance.dao.impl.IngredientDaoImpl;
-import com.example.dmalinovschi.playground.persistance.dao.impl.RecipeLabelsImpl;
-import com.example.dmalinovschi.playground.persistance.dao.impl.RecipesDaoImpl;
-import com.example.dmalinovschi.playground.persistance.dao.impl.RecipesIngredientsCombinationDaoImpl;
-import com.example.dmalinovschi.playground.persistance.models.Ingredients;
-import com.example.dmalinovschi.playground.persistance.models.MeasurementType;
-import com.example.dmalinovschi.playground.persistance.models.Recipes;
+import com.example.dmalinovschi.persistance.AppDatabase;
+import com.example.dmalinovschi.persistance.models.Ingredients;
+import com.example.dmalinovschi.persistance.models.Recipes;
+import com.example.dmalinovschi.persistance.dao.impl.IngredientDaoImpl;
+import com.example.dmalinovschi.persistance.dao.impl.RecipeLabelsImpl;
+import com.example.dmalinovschi.persistance.dao.impl.RecipesDaoImpl;
+import com.example.dmalinovschi.persistance.dao.impl.RecipesIngredientsCombinationDaoImpl;
+import com.example.dmalinovschi.persistance.models.Ingredients;
+import com.example.dmalinovschi.persistance.models.MeasurementType;
+import com.example.dmalinovschi.persistance.models.Recipes;
 
 public class DatabaseInitialiser {
     private IngredientDaoImpl ingredientDao;

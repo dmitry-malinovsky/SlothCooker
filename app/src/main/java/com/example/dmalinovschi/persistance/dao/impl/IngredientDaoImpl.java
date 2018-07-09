@@ -1,8 +1,8 @@
-package com.example.dmalinovschi.playground.persistance.dao.impl;
+package com.example.dmalinovschi.persistance.dao.impl;
 
 
-import com.example.dmalinovschi.playground.persistance.AppDatabase;
-import com.example.dmalinovschi.playground.persistance.models.Ingredients;
+import com.example.dmalinovschi.persistance.AppDatabase;
+import com.example.dmalinovschi.persistance.models.Ingredients;
 
 public class IngredientDaoImpl {
     private static AppDatabase appDatabase;

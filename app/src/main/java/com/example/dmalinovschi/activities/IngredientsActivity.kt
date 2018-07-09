@@ -1,17 +1,16 @@
-package com.example.dmalinovschi.playground
+package com.example.dmalinovschi.activities
 
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.example.dmalinovschi.adapters.IngredientsListAdapter
-import com.example.dmalinovschi.playground.persistance.AppDatabase
-import com.example.dmalinovschi.playground.persistance.models.Ingredients
+import com.example.dmalinovschi.persistance.AppDatabase
+import com.example.dmalinovschi.persistance.models.Ingredients
 import com.example.dmalinovschi.viewModels.Ingredients.IngredientsListModel
 import com.example.dmalinovschi.viewModels.Ingredients.IngredientsListRowModel
 import kotlinx.android.synthetic.main.ingredients_activity.*
-import android.support.design.widget.Snackbar
 import android.support.design.widget.FloatingActionButton
-import android.view.View
+import com.example.dmalinovschi.playground.R
 
 
 open class IngredientsActivity : MainActivity() {
@@ -43,7 +42,7 @@ open class IngredientsActivity : MainActivity() {
 
         val fab = findViewById<FloatingActionButton>(R.id.add_ingredient_fab)
         fab.setOnClickListener {
-            startActivity(Intent(this,CreateIngredientActivity::class.java ))
+            startActivity(Intent(this, CreateIngredientActivity::class.java ))
         }
     }
 }

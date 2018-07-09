@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.dmalinovschi.playground.R
-import com.example.dmalinovschi.playground.persistance.AppDatabase
+import com.example.dmalinovschi.persistance.AppDatabase
 import com.example.dmalinovschi.viewModels.RecipeDetails.RecipeDetailsModel
 import com.example.dmalinovschi.viewModels.Ingredients.IngredientsListModel
 import kotlinx.android.synthetic.main.ingredient_row.view.*

@@ -1,10 +1,10 @@
-package com.example.dmalinovschi.playground.persistance.dao.impl;
+package com.example.dmalinovschi.persistance.dao.impl;
 
-import com.example.dmalinovschi.playground.persistance.AppDatabase;
-import com.example.dmalinovschi.playground.persistance.models.Ingredients;
-import com.example.dmalinovschi.playground.persistance.models.RecipeLabels;
-import com.example.dmalinovschi.playground.persistance.models.Recipes;
-import com.example.dmalinovschi.playground.persistance.models.RecipesIngredientsCombination;
+import com.example.dmalinovschi.persistance.AppDatabase;
+import com.example.dmalinovschi.persistance.models.Ingredients;
+import com.example.dmalinovschi.persistance.models.RecipeLabels;
+import com.example.dmalinovschi.persistance.models.Recipes;
+import com.example.dmalinovschi.persistance.models.RecipesIngredientsCombination;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.dmalinovschi.playground
+package com.example.dmalinovschi.activities
 
 import android.content.Intent
 import android.support.design.widget.NavigationView
@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
+import com.example.dmalinovschi.playground.R
 
 
 open class MainActivity : AppCompatActivity() {

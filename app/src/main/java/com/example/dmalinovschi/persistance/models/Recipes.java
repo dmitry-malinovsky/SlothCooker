@@ -1,10 +1,12 @@
-package com.example.dmalinovschi.playground.persistance.models;
+package com.example.dmalinovschi.persistance.models;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
+
+import com.example.dmalinovschi.persistance.models.RecipeLabels;
 
 import java.io.Serializable;
 

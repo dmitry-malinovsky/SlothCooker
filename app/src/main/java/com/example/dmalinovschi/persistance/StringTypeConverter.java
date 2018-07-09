@@ -1,8 +1,8 @@
-package com.example.dmalinovschi.playground.persistance;
+package com.example.dmalinovschi.persistance;
 
 import android.arch.persistence.room.TypeConverter;
 
-import com.example.dmalinovschi.playground.persistance.models.MeasurementType;
+import com.example.dmalinovschi.persistance.models.MeasurementType;
 
 public class StringTypeConverter {
     @TypeConverter

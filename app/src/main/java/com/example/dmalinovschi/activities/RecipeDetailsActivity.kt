@@ -1,11 +1,12 @@
-package com.example.dmalinovschi.playground
+package com.example.dmalinovschi.activities
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.example.dmalinovschi.adapters.RecipeIngredientsAdapter
 import com.example.dmalinovschi.adapters.RecipePreparationStepsAdapter
-import com.example.dmalinovschi.playground.persistance.AppDatabase
+import com.example.dmalinovschi.playground.R
+import com.example.dmalinovschi.persistance.AppDatabase
 import com.example.dmalinovschi.viewModels.RecipeDetails.RecipeDetailsModel
 import kotlinx.android.synthetic.main.recipe_details_activity.*
 

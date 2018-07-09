@@ -1,4 +1,4 @@
-package com.example.dmalinovschi.playground.persistance.models;
+package com.example.dmalinovschi.persistance.models;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
@@ -8,7 +8,7 @@ import android.arch.persistence.room.PrimaryKey;
 import android.arch.persistence.room.TypeConverter;
 import android.arch.persistence.room.TypeConverters;
 
-import com.example.dmalinovschi.playground.persistance.StringTypeConverter;
+import com.example.dmalinovschi.persistance.StringTypeConverter;
 
 import io.reactivex.annotations.NonNull;
 

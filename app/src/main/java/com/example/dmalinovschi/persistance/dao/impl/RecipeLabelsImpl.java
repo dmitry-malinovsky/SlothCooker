@@ -1,7 +1,7 @@
-package com.example.dmalinovschi.playground.persistance.dao.impl;
+package com.example.dmalinovschi.persistance.dao.impl;
 
-import com.example.dmalinovschi.playground.persistance.AppDatabase;
-import com.example.dmalinovschi.playground.persistance.models.RecipeLabels;
+import com.example.dmalinovschi.persistance.AppDatabase;
+import com.example.dmalinovschi.persistance.models.RecipeLabels;
 
 public class RecipeLabelsImpl {
     private static AppDatabase appDatabase;

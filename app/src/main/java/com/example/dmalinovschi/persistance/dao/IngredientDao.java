@@ -1,10 +1,10 @@
-package com.example.dmalinovschi.playground.persistance.dao;
+package com.example.dmalinovschi.persistance.dao;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 
-import com.example.dmalinovschi.playground.persistance.models.Ingredients;
+import com.example.dmalinovschi.persistance.models.Ingredients;
 
 import java.util.List;
 

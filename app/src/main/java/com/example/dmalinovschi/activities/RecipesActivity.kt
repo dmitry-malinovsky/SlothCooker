@@ -1,4 +1,4 @@
-package com.example.dmalinovschi.playground
+package com.example.dmalinovschi.activities
 
 import android.graphics.Color
 import android.os.Bundle
@@ -6,10 +6,11 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.Button
 import com.example.dmalinovschi.adapters.MainAdapter
-import com.example.dmalinovschi.playground.persistance.AppDatabase
-import com.example.dmalinovschi.playground.persistance.DatabaseInitialiser
-import com.example.dmalinovschi.playground.persistance.models.Ingredients
-import com.example.dmalinovschi.playground.persistance.models.Recipes
+import com.example.dmalinovschi.persistance.AppDatabase
+import com.example.dmalinovschi.persistance.DatabaseInitialiser
+import com.example.dmalinovschi.persistance.models.Ingredients
+import com.example.dmalinovschi.persistance.models.Recipes
+import com.example.dmalinovschi.playground.R
 import com.example.dmalinovschi.viewModels.RecipeFeed.RecipeListModel
 import com.example.dmalinovschi.viewModels.RecipeFeed.RecipeRowModel
 import kotlinx.android.synthetic.main.activity_main.*
