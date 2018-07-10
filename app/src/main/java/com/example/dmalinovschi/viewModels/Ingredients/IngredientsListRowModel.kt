@@ -1,3 +1,5 @@
 package com.example.dmalinovschi.viewModels.Ingredients
 
-class IngredientsListRowModel(var id: Int, var title: String)
+import java.io.Serializable
+
+class IngredientsListRowModel(var title: String, var protein: Int, var carbs: Int, var fat: Int, var ccal: Int) : Serializable

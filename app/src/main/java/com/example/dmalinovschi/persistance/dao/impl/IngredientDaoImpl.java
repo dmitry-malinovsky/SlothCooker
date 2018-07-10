@@ -4,6 +4,8 @@ package com.example.dmalinovschi.persistance.dao.impl;
 import com.example.dmalinovschi.persistance.AppDatabase;
 import com.example.dmalinovschi.persistance.models.Ingredients;
 
+import java.util.List;
+
 public class IngredientDaoImpl {
     private static AppDatabase appDatabase;
 
@@ -20,6 +22,8 @@ public class IngredientDaoImpl {
         ingredient.setCcal(ccal);
         appDatabase.ingredientModel().addIngredient(ingredient);
     }
+
+    public List<Ingredients> getAllIngredients(){ return appDatabase.ingredientModel().getAllIngredients();}
 
     public void deleteAllIngredients() {
         appDatabase.ingredientModel().deleteAll();

@@ -10,13 +10,15 @@ import com.example.dmalinovschi.viewModels.Ingredients.IngredientsListModel
 import com.example.dmalinovschi.viewModels.Ingredients.IngredientsListRowModel
 import kotlinx.android.synthetic.main.ingredients_activity.*
 import android.support.design.widget.FloatingActionButton
+import android.widget.Adapter
 import com.example.dmalinovschi.playground.R
 
 
 open class IngredientsActivity : MainActivity() {
 
-    private lateinit var appDatabase: AppDatabase
-
+    lateinit var appDatabase: AppDatabase
+    private var ingredients: List<Ingredients> = mutableListOf()
+    private var temp: MutableList<IngredientsListRowModel> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,24 +27,30 @@ open class IngredientsActivity : MainActivity() {
 
         appDatabase = AppDatabase.getInMemoryDatabase(this)
 
-        var ingredients: List<Ingredients> = appDatabase.ingredientModel().allIngredients
-        var temp: MutableList<IngredientsListRowModel> = mutableListOf()
+        ingredients = appDatabase.ingredientModel().allIngredients
 
         for (ingredient in ingredients) {
             temp.add(IngredientsListRowModel(
-                    ingredient.ingredientId,
-                    ingredient.ingredientTitle
+                    ingredient.ingredientTitle,
+                    ingredient.protein,
+                    ingredient.carb,
+                    ingredient.fat,
+                    ingredient.ccal
             ))
         }
 
-        var ingredientsListModel = IngredientsListModel(temp)
-
         ingredients_recycle_view.layoutManager = LinearLayoutManager(this)
-        ingredients_recycle_view.adapter = IngredientsListAdapter(appDatabase, ingredientsListModel)
+        ingredients_recycle_view.adapter = IngredientsListAdapter(appDatabase, IngredientsListModel(temp))
 
         val fab = findViewById<FloatingActionButton>(R.id.add_ingredient_fab)
         fab.setOnClickListener {
-            startActivity(Intent(this, CreateIngredientActivity::class.java ))
+            startActivity(Intent(this, CreateIngredientActivity::class.java))
         }
     }
+
+    override fun onRestart() {
+        super.onRestart()
+    }
+
+
 }
