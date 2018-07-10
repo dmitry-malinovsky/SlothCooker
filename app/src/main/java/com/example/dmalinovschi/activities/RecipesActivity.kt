@@ -11,6 +11,7 @@ import com.example.dmalinovschi.persistance.DatabaseInitialiser
 import com.example.dmalinovschi.persistance.models.Ingredients
 import com.example.dmalinovschi.persistance.models.Recipes
 import com.example.dmalinovschi.playground.R
+import com.example.dmalinovschi.services.RecipesModelService
 import com.example.dmalinovschi.viewModels.RecipeFeed.RecipeListModel
 import com.example.dmalinovschi.viewModels.RecipeFeed.RecipeRowModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -19,38 +20,24 @@ import kotlinx.android.synthetic.main.activity_main.*
 open class RecipesActivity : MainActivity() {
 
     private lateinit var appDatabase: AppDatabase
+    private lateinit var recipeModelService : RecipesModelService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         appDatabase = AppDatabase.getInMemoryDatabase(this)
+        recipeModelService = RecipesModelService(appDatabase)
         populateDb(appDatabase)
 
         setToolbar()
 
-        var recipes: List<Recipes> = appDatabase.recipesModel().allRecipes
-        var temp: MutableList<RecipeRowModel> = mutableListOf()
-
-        for (recipe in recipes) {
-            temp.add(RecipeRowModel(
-                    recipe.totalCarbs,
-                    recipe.totalProtein,
-                    recipe.totalFat,
-                    recipe.totalCcal,
-                    recipe.title,
-                    recipe.recipeId
-            ))
-        }
-
-        var recipeListModel = RecipeListModel(temp)
-
         recyclerView_main.layoutManager = LinearLayoutManager(this)
         var button: Button = findViewById(R.id.add_recipe_button)
 
-        if (recipes.isNotEmpty()) {
+        if (recipeModelService.getCurrentRecipes()!!.isNotEmpty()) {
             button.visibility = View.GONE;
-            recyclerView_main.adapter = MainAdapter(appDatabase, recipeListModel)
+            recyclerView_main.adapter = MainAdapter(appDatabase, recipeModelService.buildRecipeList())
         } else {
             button.visibility = View.VISIBLE;
             recyclerView_main.setBackgroundColor(Color.GRAY)

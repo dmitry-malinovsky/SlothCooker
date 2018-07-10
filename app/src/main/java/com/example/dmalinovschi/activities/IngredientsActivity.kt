@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.ingredients_activity.*
 import android.support.design.widget.FloatingActionButton
 import android.widget.Adapter
 import com.example.dmalinovschi.playground.R
+import com.example.dmalinovschi.services.IngredientsModelService
 
 
 open class IngredientsActivity : MainActivity() {
@@ -19,6 +20,7 @@ open class IngredientsActivity : MainActivity() {
     lateinit var appDatabase: AppDatabase
     private var ingredients: List<Ingredients> = mutableListOf()
     private var temp: MutableList<IngredientsListRowModel> = mutableListOf()
+    private lateinit var ingredientsService: IngredientsModelService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,20 +29,11 @@ open class IngredientsActivity : MainActivity() {
 
         appDatabase = AppDatabase.getInMemoryDatabase(this)
 
-        ingredients = appDatabase.ingredientModel().allIngredients
-
-        for (ingredient in ingredients) {
-            temp.add(IngredientsListRowModel(
-                    ingredient.ingredientTitle,
-                    ingredient.protein,
-                    ingredient.carb,
-                    ingredient.fat,
-                    ingredient.ccal
-            ))
-        }
+        ingredientsService = IngredientsModelService(appDatabase)
 
         ingredients_recycle_view.layoutManager = LinearLayoutManager(this)
-        ingredients_recycle_view.adapter = IngredientsListAdapter(appDatabase, IngredientsListModel(temp))
+        ingredients_recycle_view.adapter = IngredientsListAdapter(appDatabase,
+                ingredientsService.buildIngredientModelList())
 
         val fab = findViewById<FloatingActionButton>(R.id.add_ingredient_fab)
         fab.setOnClickListener {
