@@ -1,5 +1,6 @@
 package com.example.dmalinovschi.activities
 
+import android.content.Context
 import android.content.Intent
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
@@ -8,10 +9,26 @@ import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
+import com.example.dmalinovschi.persistance.AppDatabase
+import com.example.dmalinovschi.persistance.DatabaseInitialiser
 import com.example.dmalinovschi.playground.R
 
 
 open class MainActivity : AppCompatActivity() {
+
+    companion object {
+        lateinit var appDatabase: AppDatabase
+        var databaseInitialised: Boolean = false
+
+        fun setDatabase(context: Context) {
+            appDatabase = AppDatabase.getInMemoryDatabase(context)
+        }
+
+        fun populateDb() {
+            DatabaseInitialiser.populateSync(appDatabase)
+            databaseInitialised = true
+        }
+    }
 
     private lateinit var mDrawerLayout: DrawerLayout
 

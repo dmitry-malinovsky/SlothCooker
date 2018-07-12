@@ -18,7 +18,7 @@ class CreateIngredientActivity : IngredientsActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.create_ingrediant_activity)
         setUpToolbar(findViewById(R.id.back_toolbar))
-        val ingredientDao = IngredientDaoImpl(super.appDatabase)
+        val ingredientDao = IngredientDaoImpl(appDatabase)
 
         save_ingredient_fab.setOnClickListener {
             var inputIngredientDetails: IngredientsListRowModel = getInputDetails()

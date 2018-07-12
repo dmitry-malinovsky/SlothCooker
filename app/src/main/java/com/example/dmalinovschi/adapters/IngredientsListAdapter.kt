@@ -43,6 +43,7 @@ class IngredientsListAdapter (private var data: AppDatabase, var ingredientsList
         ingredientsListModel.addItem(viewModel)
         notifyItemInserted(itemCount +1)
     }
+
 }
 
 

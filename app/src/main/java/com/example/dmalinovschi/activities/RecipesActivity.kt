@@ -19,16 +19,18 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 open class RecipesActivity : MainActivity() {
 
-    private lateinit var appDatabase: AppDatabase
-    private lateinit var recipeModelService : RecipesModelService
+    private lateinit var recipeModelService: RecipesModelService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        appDatabase = AppDatabase.getInMemoryDatabase(this)
+        setDatabase(this)
+        if (!databaseInitialised) {
+            populateDb()
+        }
+
         recipeModelService = RecipesModelService(appDatabase)
-        populateDb(appDatabase)
 
         setToolbar()
 
@@ -36,18 +38,12 @@ open class RecipesActivity : MainActivity() {
         var button: Button = findViewById(R.id.add_recipe_button)
 
         if (recipeModelService.getCurrentRecipes()!!.isNotEmpty()) {
-            button.visibility = View.GONE;
+            button.visibility = View.GONE
             recyclerView_main.adapter = MainAdapter(appDatabase, recipeModelService.buildRecipeList())
         } else {
             button.visibility = View.VISIBLE;
             recyclerView_main.setBackgroundColor(Color.GRAY)
         }
-
-    }
-
-
-    private fun populateDb(appDatabase: AppDatabase) {
-        DatabaseInitialiser.populateSync(appDatabase);
     }
 
     public fun fetchDb(): MutableList<Ingredients>? {
