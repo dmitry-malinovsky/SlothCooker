@@ -37,7 +37,7 @@ class CreateIngredientActivity : IngredientsActivity() {
 
     private fun getInputDetails(): IngredientsListRowModel {
         return IngredientsListRowModel(
-                "test",
+                ingredient_title_edit.text.toString(),
                 ingredient_protein_edit.text.toString().toInt(),
                 ingredient_carbs_edit.text.toString().toInt(),
                 ingredient_fats_edit.text.toString().toInt(),
