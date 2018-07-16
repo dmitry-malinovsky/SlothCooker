@@ -27,6 +27,8 @@
         android:layout_height="87dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         app:errorEnabled="true"
         app:layout_constraintBottom_toTopOf="@+id/ingredient_protein_edit_layout"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
@@ -34,6 +36,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <android.support.design.widget.TextInputEditText
+            android:id="@+id/ingredient_title_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -55,6 +58,7 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <android.support.design.widget.TextInputEditText
+            android:id="@+id/ingredient_protein_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -75,6 +79,7 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <android.support.design.widget.TextInputEditText
+            android:id="@+id/ingredient_carbs_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -95,6 +100,7 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <android.support.design.widget.TextInputEditText
+            android:id="@+id/ingredient_fats_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto"
@@ -114,6 +120,7 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <android.support.design.widget.TextInputEditText
+            android:id="@+id/ingredient_ccal_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto"

@@ -3,12 +3,17 @@ package com.example.dmalinovschi.activities
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
+import android.support.design.widget.TextInputEditText
 import android.support.design.widget.TextInputLayout
 import android.support.v7.widget.Toolbar
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.View.OnFocusChangeListener
 import com.example.dmalinovschi.adapters.TextInputLayoutAdapter
 import com.example.dmalinovschi.persistance.dao.impl.IngredientDaoImpl
 import com.example.dmalinovschi.playground.R
 import com.example.dmalinovschi.viewModels.Ingredients.IngredientsListRowModel
+
 
 class CreateIngredientActivity : IngredientsActivity() {
     private lateinit var textInputTitle: TextInputLayout
@@ -32,7 +37,11 @@ class CreateIngredientActivity : IngredientsActivity() {
         setViewElements()
         inputAdapter = TextInputLayoutAdapter()
 
-        addIngredientButton.setOnClickListener { confirmInput() }
+        textInputTitle.onFocusChangeListener = OnFocusChangeListener { v, hasFocus ->
+            if (!hasFocus) {
+                validateTitle()
+            }
+        }
     }
 
     private fun getInputDetails(): IngredientsListRowModel {
@@ -58,6 +67,53 @@ class CreateIngredientActivity : IngredientsActivity() {
         textInputFats = findViewById(R.id.ingredient_fats_edit_layout)
         textInputCcal = findViewById(R.id.ingredient_ccal_edit_layout)
         addIngredientButton = findViewById(R.id.save_ingredient_fab)
+
+        addIngredientButton.setOnClickListener { confirmInput() }
+
+        var title = findViewById(R.id.ingredient_title_edit_text) as TextInputEditText
+        title.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
+            override fun onTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
+            override fun afterTextChanged(editable: Editable) {
+                validateTitle()
+            }
+        })
+
+        var protein = findViewById(R.id.ingredient_protein_edit_text) as TextInputEditText
+        protein.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
+            override fun onTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
+            override fun afterTextChanged(editable: Editable) {
+                validateProtein()
+            }
+        })
+
+        var carbs = findViewById(R.id.ingredient_carbs_edit_text) as TextInputEditText
+        carbs.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
+            override fun onTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
+            override fun afterTextChanged(editable: Editable) {
+                validateCarbs()
+            }
+        })
+
+        var fat = findViewById(R.id.ingredient_fats_edit_text) as TextInputEditText
+        fat.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
+            override fun onTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
+            override fun afterTextChanged(editable: Editable) {
+                validateCarbs()
+            }
+        })
+
+        var ccal = findViewById(R.id.ingredient_ccal_edit_text) as TextInputEditText
+        ccal.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
+            override fun onTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
+            override fun afterTextChanged(editable: Editable) {
+                validateCarbs()
+            }
+        })
     }
 
     private fun confirmInput() {
@@ -65,7 +121,7 @@ class CreateIngredientActivity : IngredientsActivity() {
         if (!validateTitle() and !validateProtein() and !validateCarbs() and !validateCcal() and !validateFat()) {
             inputValidationResult = false
         } else {
-            if (validateTitle() and validateProtein() and validateCarbs() and validateCcal() and validateFat())  {
+            if (validateTitle() and validateProtein() and validateCarbs() and validateCcal() and validateFat()) {
                 inputValidationResult = true
                 var inputIngredientDetails: IngredientsListRowModel = getInputDetails()
                 ingredientDao.addIngredient(inputIngredientDetails.title,
