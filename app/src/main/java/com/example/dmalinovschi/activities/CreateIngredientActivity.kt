@@ -37,11 +37,6 @@ class CreateIngredientActivity : IngredientsActivity() {
         setViewElements()
         inputAdapter = TextInputLayoutAdapter()
 
-        textInputTitle.onFocusChangeListener = OnFocusChangeListener { v, hasFocus ->
-            if (!hasFocus) {
-                validateTitle()
-            }
-        }
     }
 
     private fun getInputDetails(): IngredientsListRowModel {
@@ -102,7 +97,7 @@ class CreateIngredientActivity : IngredientsActivity() {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
             override fun onTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
             override fun afterTextChanged(editable: Editable) {
-                validateCarbs()
+                validateFat()
             }
         })
 
@@ -111,7 +106,7 @@ class CreateIngredientActivity : IngredientsActivity() {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
             override fun onTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
             override fun afterTextChanged(editable: Editable) {
-                validateCarbs()
+                validateCcal()
             }
         })
     }
@@ -143,7 +138,7 @@ class CreateIngredientActivity : IngredientsActivity() {
         if (title.isEmpty()) {
             textInputTitle.error = "Title can't be empty"
             return false
-        } else if (title.length > 50) {
+        } else if (title.length > 30) {
             textInputTitle.error = "Title can't be longer than 50"
             return false
         } else {
