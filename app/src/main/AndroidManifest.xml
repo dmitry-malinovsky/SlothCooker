@@ -34,7 +34,7 @@
         <activity
             android:name="com.example.dmalinovschi.activities.CreateIngredientActivity"
             android:label="Add ingredient"
-            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:windowSoftInputMode="stateVisible|stateAlwaysVisible|adjustResize"
             android:launchMode="singleTop">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.dmalinovschi.activities.IngredientsActivity"/>
