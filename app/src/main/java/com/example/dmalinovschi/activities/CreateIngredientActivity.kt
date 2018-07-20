@@ -5,10 +5,11 @@ import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.TextInputEditText
 import android.support.design.widget.TextInputLayout
+import android.support.v4.app.NavUtils
 import android.support.v7.widget.Toolbar
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.View.OnFocusChangeListener
+import android.view.MenuItem
 import com.example.dmalinovschi.adapters.TextInputLayoutAdapter
 import com.example.dmalinovschi.persistance.dao.impl.IngredientDaoImpl
 import com.example.dmalinovschi.playground.R
@@ -21,7 +22,7 @@ open class CreateIngredientActivity : IngredientsActivity() {
     private lateinit var textInputCarbs: TextInputLayout
     private lateinit var textInputFats: TextInputLayout
     private lateinit var textInputCcal: TextInputLayout
-    private lateinit var addIngredientButton: FloatingActionButton
+    internal lateinit var floatingActionButton: FloatingActionButton
     private lateinit var inputAdapter: TextInputLayoutAdapter
 
     internal lateinit var inputTitle: TextInputEditText
@@ -59,7 +60,19 @@ open class CreateIngredientActivity : IngredientsActivity() {
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
+
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                NavUtils.navigateUpFromSameTask(this)
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 
     private fun setViewElements() {
         textInputTitle = findViewById(R.id.ingredient_title_edit_layout)
@@ -67,7 +80,7 @@ open class CreateIngredientActivity : IngredientsActivity() {
         textInputCarbs = findViewById(R.id.ingredient_carbs_edit_layout)
         textInputFats = findViewById(R.id.ingredient_fats_edit_layout)
         textInputCcal = findViewById(R.id.ingredient_ccal_edit_layout)
-        addIngredientButton = findViewById(R.id.save_ingredient_fab)
+        floatingActionButton = findViewById(R.id.save_ingredient_fab)
 
         inputTitle = findViewById(R.id.ingredient_title_edit_text)
         inputProtein = findViewById(R.id.ingredient_protein_edit_text)
@@ -75,7 +88,7 @@ open class CreateIngredientActivity : IngredientsActivity() {
         inputFats = findViewById(R.id.ingredient_fats_edit_text)
         inputCcal = findViewById(R.id.ingredient_ccal_edit_text)
 
-        addIngredientButton.setOnClickListener { confirmInput() }
+        floatingActionButton.setOnClickListener { confirmInput() }
 
         inputTitle.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
@@ -85,7 +98,6 @@ open class CreateIngredientActivity : IngredientsActivity() {
             }
         })
 
-        var protein = findViewById(R.id.ingredient_protein_edit_text) as TextInputEditText
         inputProtein.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
             override fun onTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
