@@ -15,7 +15,7 @@ import com.example.dmalinovschi.playground.R
 import com.example.dmalinovschi.viewModels.Ingredients.IngredientsListRowModel
 
 
-class CreateIngredientActivity : IngredientsActivity() {
+open class CreateIngredientActivity : IngredientsActivity() {
     private lateinit var textInputTitle: TextInputLayout
     private lateinit var textInputProtein: TextInputLayout
     private lateinit var textInputCarbs: TextInputLayout
@@ -41,6 +41,7 @@ class CreateIngredientActivity : IngredientsActivity() {
 
     private fun getInputDetails(): IngredientsListRowModel {
         return IngredientsListRowModel(
+                0,
                 inputAdapter.getText(textInputTitle),
                 if (inputAdapter.getText(textInputProtein).isEmpty()) 0 else inputAdapter.getText(textInputProtein).toInt(),
                 if (inputAdapter.getText(textInputCarbs).isEmpty()) 0 else inputAdapter.getText(textInputCarbs).toInt(),
@@ -49,7 +50,7 @@ class CreateIngredientActivity : IngredientsActivity() {
         )
     }
 
-    private fun setUpToolbar(toolbar: Toolbar) {
+    internal fun setUpToolbar(toolbar: Toolbar) {
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
@@ -211,5 +212,4 @@ class CreateIngredientActivity : IngredientsActivity() {
             }
         }
     }
-
 }

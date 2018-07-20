@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ECEFF1"
+    tools:context="com.example.dmalinovschi.activities.CreateIngredientActivity">
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/save_ingredient_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/ic_round_add_24px"
+        app:elevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.948"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <FrameLayout
+        android:id="@+id/content_frame"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/back_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:titleTextColor="@color/white" />
+    </FrameLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/content_frame">
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:id="@+id/inputDataLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.LinearLayoutCompat
+                android:id="@+id/titleView"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@color/white"
+                android:elevation="2dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/content_frame">
+
+                <TextView
+                    android:id="@+id/ingredient_title_text"
+                    android:layout_width="260dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="30dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="Placeholder"
+                    app:layout_constraintBottom_toTopOf="@+id/ingredient_protein_edit_layout"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView"
+                    app:layout_constraintHorizontal_bias="0.346"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </android.support.v7.widget.LinearLayoutCompat>
+
+            <android.support.v7.widget.LinearLayoutCompat
+                android:id="@+id/nutritionInfoView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:elevation="2dp"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="30dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/protein_image"
+                        android:layout_width="30dp"
+                        android:layout_height="35dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginTop="30dp"
+                        app:layout_constraintBottom_toTopOf="@+id/carbs_image_view2"
+                        app:layout_constraintEnd_toStartOf="@+id/ingredient_protein_edit_layout"
+                        app:layout_constraintHorizontal_bias="0.866"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView"
+                        app:layout_constraintVertical_bias="0.32"
+                        app:srcCompat="@drawable/protein" />
+
+                    <TextView
+                        android:id="@+id/ingredient_protein_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="56dp"
+                        android:layout_marginTop="35dp"
+                        android:ems="10"
+                        android:fontFamily="@font/roboto"
+                        android:text="Placeholder"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toTopOf="@+id/ingredient_carbs_edit_layout"
+                        app:layout_constraintEnd_toEndOf="parent" />
+                </android.support.v7.widget.LinearLayoutCompat>
+
+
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/carbs_image"
+                        android:layout_width="30dp"
+                        android:layout_height="35dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginTop="15dp"
+                        app:layout_constraintBottom_toTopOf="@+id/fats_image_view2"
+                        app:layout_constraintEnd_toStartOf="@+id/ingredient_carbs_edit_layout"
+                        app:layout_constraintHorizontal_bias="0.866"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:srcCompat="@drawable/carbs" />
+
+                    <TextView
+                        android:id="@+id/ingredient_carbs_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:ems="10"
+                        android:fontFamily="@font/roboto"
+                        android:text="Placeholder"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toTopOf="@+id/ingredient_fats_edit_layout"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                </android.support.v7.widget.LinearLayoutCompat>
+
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/fats_image_view2"
+                        android:layout_width="30dp"
+                        android:layout_height="35dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginTop="15dp"
+                        app:layout_constraintBottom_toTopOf="@+id/calories_image_view"
+                        app:layout_constraintEnd_toStartOf="@+id/ingredient_fats_edit_layout"
+                        app:layout_constraintHorizontal_bias="0.866"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:srcCompat="@drawable/fat" />
+
+                    <TextView
+                        android:id="@+id/ingredient_fats_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="Placeholder"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toTopOf="@+id/ingredient_ccal_edit_layout"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                </android.support.v7.widget.LinearLayoutCompat>
+
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/calories_image_view"
+                        android:layout_width="30dp"
+                        android:layout_height="35dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginTop="15dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/ingredient_ccal_edit_layout"
+                        app:layout_constraintHorizontal_bias="0.866"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:srcCompat="@drawable/kcal" />
+
+                    <TextView
+                        android:id="@+id/ingredient_ccal_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="Placeholder"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+                </android.support.v7.widget.LinearLayoutCompat>
+            </android.support.v7.widget.LinearLayoutCompat>
+        </android.support.v7.widget.LinearLayoutCompat>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

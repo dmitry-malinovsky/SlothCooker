@@ -17,7 +17,8 @@ class IngredientsModelService(var appDatabase: AppDatabase) {
     }
 
     public fun buildIngredientRowModel(ingredient: Ingredients): IngredientsListRowModel {
-        return IngredientsListRowModel(ingredient.ingredientTitle,
+        return IngredientsListRowModel(ingredient.ingredientId,
+                ingredient.ingredientTitle,
                 ingredient.protein,
                 ingredient.carb,
                 ingredient.fat,
