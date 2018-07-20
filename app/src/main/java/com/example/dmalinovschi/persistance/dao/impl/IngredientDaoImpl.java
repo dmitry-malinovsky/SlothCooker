@@ -29,5 +29,9 @@ public class IngredientDaoImpl {
         appDatabase.ingredientModel().deleteAll();
     }
 
+    public void updateIngredient( Ingredients ingredients) { appDatabase.ingredientModel().updateIngredient(ingredients);}
 
+    public Ingredients getIngredientById (int id){
+       return appDatabase.ingredientModel().getIngredientById(id);
+    }
 }

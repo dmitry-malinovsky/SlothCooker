@@ -3,6 +3,7 @@ package com.example.dmalinovschi.persistance.dao;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import com.example.dmalinovschi.persistance.models.Ingredients;
 
@@ -24,6 +25,10 @@ public interface IngredientDao {
 
     @Query("delete from ingredients")
     void deleteAll();
+
+    @Update
+    void updateIngredient(Ingredients ingredient);
+
 
     @Insert ()
     void addIngredient(Ingredients ingredient);

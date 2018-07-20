@@ -24,7 +24,13 @@ open class CreateIngredientActivity : IngredientsActivity() {
     private lateinit var addIngredientButton: FloatingActionButton
     private lateinit var inputAdapter: TextInputLayoutAdapter
 
-    private var inputValidationResult: Boolean = false
+    internal lateinit var inputTitle: TextInputEditText
+    internal lateinit var inputProtein: TextInputEditText
+    internal lateinit var inputCarbs: TextInputEditText
+    internal lateinit var inputFats: TextInputEditText
+    internal lateinit var inputCcal: TextInputEditText
+
+    internal var inputValidationResult: Boolean = false
 
     companion object {
         val NEW_INGREDIENT_KEY = "NEW INGREDIENT"
@@ -36,10 +42,9 @@ open class CreateIngredientActivity : IngredientsActivity() {
         setUpToolbar(findViewById(R.id.back_toolbar))
         setViewElements()
         inputAdapter = TextInputLayoutAdapter()
-
     }
 
-    private fun getInputDetails(): IngredientsListRowModel {
+    internal fun getInputDetails(): IngredientsListRowModel {
         return IngredientsListRowModel(
                 0,
                 inputAdapter.getText(textInputTitle),
@@ -64,10 +69,15 @@ open class CreateIngredientActivity : IngredientsActivity() {
         textInputCcal = findViewById(R.id.ingredient_ccal_edit_layout)
         addIngredientButton = findViewById(R.id.save_ingredient_fab)
 
+        inputTitle = findViewById(R.id.ingredient_title_edit_text)
+        inputProtein = findViewById(R.id.ingredient_protein_edit_text)
+        inputCarbs = findViewById(R.id.ingredient_carbs_edit_text)
+        inputFats = findViewById(R.id.ingredient_fats_edit_text)
+        inputCcal = findViewById(R.id.ingredient_ccal_edit_text)
+
         addIngredientButton.setOnClickListener { confirmInput() }
 
-        var title = findViewById(R.id.ingredient_title_edit_text) as TextInputEditText
-        title.addTextChangedListener(object : TextWatcher {
+        inputTitle.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
             override fun onTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
             override fun afterTextChanged(editable: Editable) {
@@ -76,7 +86,7 @@ open class CreateIngredientActivity : IngredientsActivity() {
         })
 
         var protein = findViewById(R.id.ingredient_protein_edit_text) as TextInputEditText
-        protein.addTextChangedListener(object : TextWatcher {
+        inputProtein.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
             override fun onTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
             override fun afterTextChanged(editable: Editable) {
@@ -84,8 +94,7 @@ open class CreateIngredientActivity : IngredientsActivity() {
             }
         })
 
-        var carbs = findViewById(R.id.ingredient_carbs_edit_text) as TextInputEditText
-        carbs.addTextChangedListener(object : TextWatcher {
+        inputCarbs.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
             override fun onTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
             override fun afterTextChanged(editable: Editable) {
@@ -93,8 +102,7 @@ open class CreateIngredientActivity : IngredientsActivity() {
             }
         })
 
-        var fat = findViewById(R.id.ingredient_fats_edit_text) as TextInputEditText
-        fat.addTextChangedListener(object : TextWatcher {
+        inputFats.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
             override fun onTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
             override fun afterTextChanged(editable: Editable) {
@@ -102,8 +110,7 @@ open class CreateIngredientActivity : IngredientsActivity() {
             }
         })
 
-        var ccal = findViewById(R.id.ingredient_ccal_edit_text) as TextInputEditText
-        ccal.addTextChangedListener(object : TextWatcher {
+        inputCcal.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
             override fun onTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
             override fun afterTextChanged(editable: Editable) {
@@ -112,7 +119,7 @@ open class CreateIngredientActivity : IngredientsActivity() {
         })
     }
 
-    private fun confirmInput() {
+    internal open fun confirmInput() {
         val ingredientDao = IngredientDaoImpl(appDatabase)
         if (!validateTitle() and !validateProtein() and !validateCarbs() and !validateCcal() and !validateFat()) {
             inputValidationResult = false
@@ -134,7 +141,7 @@ open class CreateIngredientActivity : IngredientsActivity() {
         }
     }
 
-    private fun validateTitle(): Boolean {
+    internal fun validateTitle(): Boolean {
         val title = inputAdapter.getText(textInputTitle)
         if (title.isEmpty()) {
             textInputTitle.error = "Title can't be empty"
@@ -148,7 +155,7 @@ open class CreateIngredientActivity : IngredientsActivity() {
         }
     }
 
-    private fun validateProtein(): Boolean {
+    internal fun validateProtein(): Boolean {
         var protein = inputAdapter.getText(textInputProtein)
 
         if (protein.isEmpty()) {
@@ -165,7 +172,7 @@ open class CreateIngredientActivity : IngredientsActivity() {
         }
     }
 
-    private fun validateCarbs(): Boolean {
+    internal fun validateCarbs(): Boolean {
         val carbs = inputAdapter.getText(textInputCarbs)
         if (carbs.isEmpty()) {
             textInputCarbs.error = null
@@ -181,7 +188,7 @@ open class CreateIngredientActivity : IngredientsActivity() {
         }
     }
 
-    private fun validateFat(): Boolean {
+    internal fun validateFat(): Boolean {
         val fats = inputAdapter.getText(textInputFats)
         if (fats.isEmpty()) {
             textInputFats.error = null
@@ -197,7 +204,7 @@ open class CreateIngredientActivity : IngredientsActivity() {
         }
     }
 
-    private fun validateCcal(): Boolean {
+    internal fun validateCcal(): Boolean {
         val ccal = inputAdapter.getText(textInputCcal)
         if (ccal.isEmpty()) {
             textInputCcal.error = null

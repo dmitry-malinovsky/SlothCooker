@@ -3,6 +3,7 @@ package com.example.dmalinovschi.activities
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.widget.TextView
+import com.example.dmalinovschi.persistance.models.Ingredients
 
 import com.example.dmalinovschi.playground.R
 import com.example.dmalinovschi.viewModels.Ingredients.IngredientsRowDetailsModel
@@ -23,13 +24,13 @@ class IngredientDetailsActivity : CreateIngredientActivity() {
         setUpToolbar(findViewById(R.id.back_toolbar))
         setViewElements()
 
-        var extras = intent.extras
-        var ingredientDetails = extras.getSerializable("INGREDIENT") as IngredientsRowDetailsModel
-        textViewTitle.text = ingredientDetails.title
-        textViewProtein.text = ingredientDetails.protein.toString()
-        textViewCarbs.text =ingredientDetails.carbs.toString()
-        textViewFats.text = ingredientDetails.fat.toString()
-        textViewCcal.text = ingredientDetails.ccal.toString()
+//        var extras = intent.extras
+//        var ingredientDetails = extras.getSerializable("INGREDIENT") as Ingredients
+//        textViewTitle.text = ingredientDetails.title
+//        textViewProtein.text = ingredientDetails.protein.toString()
+//        textViewCarbs.text =ingredientDetails.carbs.toString()
+//        textViewFats.text = ingredientDetails.fat.toString()
+//        textViewCcal.text = ingredientDetails.ccal.toString()
     }
 
     private fun setViewElements() {
