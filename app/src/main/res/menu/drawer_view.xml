@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_recipes"
+            android:icon="@drawable/ic_baseline_class_24px"
+            android:title="Recipes" />
+        <item
             android:id="@+id/nav_ingredients"
-            android:icon="@drawable/ingredients_icon"
+            android:icon="@drawable/ic_baseline_list_24px"
             android:title="Ingredients" />
         <item
             android:id="@+id/nav_labels"
-            android:icon="@drawable/ingredients_icon"
+            android:icon="@drawable/ic_baseline_label_24px"
             android:title="Labels" />
-        <item
-            android:id="@+id/nav_recipes"
-            android:icon="@drawable/ingredients_icon"
-            android:title="Recipes" />
 
     </group>
 </menu>

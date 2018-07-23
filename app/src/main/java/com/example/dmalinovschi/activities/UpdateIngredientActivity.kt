@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.example.dmalinovschi.persistance.dao.impl.IngredientDaoImpl
 import com.example.dmalinovschi.persistance.models.Ingredients
+import com.example.dmalinovschi.playground.R
 import com.example.dmalinovschi.viewModels.Ingredients.IngredientsListRowModel
 import com.example.dmalinovschi.viewModels.Ingredients.IngredientsRowDetailsModel
 
@@ -12,14 +13,16 @@ class UpdateIngredientActivity : CreateIngredientActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var extras = intent.extras
-        var ingredientDetails = extras.getSerializable("INGREDIENT") as IngredientsRowDetailsModel
+        floatingActionButton.setImageDrawable(resources.getDrawable(R.drawable.ic_baseline_edit_24px));
 
-        inputTitle.setText(ingredientDetails.title)
-        inputProtein.setText(ingredientDetails.protein)
-        inputCarbs.setText(ingredientDetails.carbs)
-        inputFats.setText(ingredientDetails.fat)
-        inputCcal.setText(ingredientDetails.ccal)
+        var extras = intent.extras
+        ingredient = extras.getSerializable("INGREDIENT") as Ingredients
+
+        inputTitle.setText(ingredient.ingredientTitle)
+        inputProtein.setText(ingredient.protein.toString())
+        inputCarbs.setText(ingredient.carb.toString())
+        inputFats.setText(ingredient.fat.toString())
+        inputCcal.setText(ingredient.ccal.toString())
     }
 
  override fun confirmInput() {
