@@ -60,7 +60,6 @@ open class CreateIngredientActivity : IngredientsActivity() {
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

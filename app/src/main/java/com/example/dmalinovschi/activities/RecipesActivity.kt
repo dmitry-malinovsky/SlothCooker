@@ -1,7 +1,9 @@
 package com.example.dmalinovschi.activities
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.Button
@@ -31,18 +33,13 @@ open class RecipesActivity : MainActivity() {
         }
 
         recipeModelService = RecipesModelService(appDatabase)
-
         setToolbar()
 
         recyclerView_main.layoutManager = LinearLayoutManager(this)
-        var button: Button = findViewById(R.id.add_recipe_button)
-
-        if (recipeModelService.getCurrentRecipes()!!.isNotEmpty()) {
-            button.visibility = View.GONE
-            recyclerView_main.adapter = MainAdapter(appDatabase, recipeModelService.buildRecipeList())
-        } else {
-            button.visibility = View.VISIBLE;
-            recyclerView_main.setBackgroundColor(Color.GRAY)
+        recyclerView_main.adapter = MainAdapter(appDatabase, recipeModelService.buildRecipeList())
+        val fab = findViewById<FloatingActionButton>(R.id.add_recipe_fab)
+        fab.setOnClickListener {
+            startActivity(Intent(this, CreateRecipeActivity::class.java))
         }
     }
 

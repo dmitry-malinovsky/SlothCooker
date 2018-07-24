@@ -18,9 +18,17 @@
             android:label="Recipes">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.example.dmalinovschi.activities.CreateRecipeActivity"
+            android:label="Add recipe"
+            android:windowSoftInputMode="stateVisible|stateAlwaysVisible|adjustResize"
+            android:launchMode="singleTop">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.dmalinovschi.activities.RecipesActivity"/>
         </activity>
 
         <activity
@@ -52,7 +60,7 @@
         <activity
             android:name="com.example.dmalinovschi.activities.UpdateIngredientActivity"
             android:label="Update Ingredient"
-            android:windowSoftInputMode="stateVisible|stateAlwaysVisible|adjustResize"
+            android:windowSoftInputMode="stateHidden|stateAlwaysVisible|adjustResize"
             android:launchMode="singleTop">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.dmalinovschi.activities.IngredientsActivity"/>
