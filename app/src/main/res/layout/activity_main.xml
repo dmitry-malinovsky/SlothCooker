@@ -5,7 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ECEFF1"
+    android:background="@color/colorPrimary"
     tools:context="com.example.dmalinovschi.activities.RecipesActivity">
 
     <!-- Layout to contain contents of main body of screen (drawer will slide over this) -->
@@ -32,7 +32,7 @@
             android:src="@drawable/ic_round_add_24px" />
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerView_main"
+            android:id="@+id/recipes_recycle_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="50dp"

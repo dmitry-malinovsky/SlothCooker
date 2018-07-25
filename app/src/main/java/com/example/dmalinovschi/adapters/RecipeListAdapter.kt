@@ -16,7 +16,7 @@ import com.example.dmalinovschi.viewModels.RecipeDetails.RecipeDetailsPreparatio
 import com.example.dmalinovschi.viewModels.RecipeFeed.RecipeListModel
 import kotlinx.android.synthetic.main.recipe_row.view.*
 
-class MainAdapter(private var data: AppDatabase, var recipeListModel: RecipeListModel) : RecyclerView.Adapter<RecipesListViewHolder>() {
+class RecipeListAdapter(private var data: AppDatabase, var recipeListModel: RecipeListModel) : RecyclerView.Adapter<RecipesListViewHolder>() {
 
     //Replace the conntent is views (items)
     override fun onBindViewHolder(holder: RecipesListViewHolder, position: Int) {
