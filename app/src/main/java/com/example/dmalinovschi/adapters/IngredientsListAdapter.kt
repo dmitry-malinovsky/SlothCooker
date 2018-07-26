@@ -5,8 +5,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.dmalinovschi.activities.CreateIngredientActivity
-import com.example.dmalinovschi.activities.IngredientDetailsActivity
 import com.example.dmalinovschi.activities.MainActivity
 import com.example.dmalinovschi.activities.UpdateIngredientActivity
 import com.example.dmalinovschi.persistance.AppDatabase
@@ -15,7 +13,6 @@ import com.example.dmalinovschi.persistance.models.Ingredients
 import com.example.dmalinovschi.playground.R
 import com.example.dmalinovschi.viewModels.Ingredients.IngredientsListModel
 import com.example.dmalinovschi.viewModels.Ingredients.IngredientsListRowModel
-import com.example.dmalinovschi.viewModels.Ingredients.IngredientsRowDetailsModel
 import kotlinx.android.synthetic.main.ingredient_row.view.*
 
 

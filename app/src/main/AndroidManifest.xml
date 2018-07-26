@@ -49,15 +49,6 @@
         </activity>
 
         <activity
-            android:name="com.example.dmalinovschi.activities.IngredientDetailsActivity"
-            android:label="Details"
-            android:windowSoftInputMode="stateVisible|stateAlwaysVisible|adjustResize"
-            android:launchMode="singleTop">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.dmalinovschi.activities.IngredientsActivity"/>
-        </activity>
-
-        <activity
             android:name="com.example.dmalinovschi.activities.UpdateIngredientActivity"
             android:label="Update Ingredient"
             android:windowSoftInputMode="stateHidden|stateAlwaysVisible|adjustResize"

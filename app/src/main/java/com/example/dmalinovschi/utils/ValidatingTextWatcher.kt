@@ -1,14 +1,15 @@
 package com.example.dmalinovschi.utils
 
+import android.support.design.widget.TextInputLayout
 import android.text.Editable
 import android.text.TextWatcher
-import kotlin.reflect.KFunction0
+import kotlin.reflect.KFunction1
 
 
-class TextValidator(var validator: KFunction0<Boolean>) : TextWatcher {
+class ValidatingTextWatcher(var validator: KFunction1<@ParameterName(name = "layout") TextInputLayout, Boolean>, var textInputTitle: TextInputLayout) : TextWatcher {
 
     override fun afterTextChanged(s: Editable) {
-        validator()
+        validator(textInputTitle)
     }
 
     override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) { /* Don't care */

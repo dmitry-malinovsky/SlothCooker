@@ -2,33 +2,21 @@ package com.example.dmalinovschi.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
-import android.support.design.widget.TextInputEditText
-import android.support.design.widget.TextInputLayout
 import android.support.v4.app.NavUtils
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import com.example.dmalinovschi.adapters.TextInputLayoutAdapter
 import com.example.dmalinovschi.playground.R
 import com.example.dmalinovschi.services.IngredientsModelService
-import com.example.dmalinovschi.utils.TextValidator
+import com.example.dmalinovschi.utils.InputValidator
+import com.example.dmalinovschi.utils.ValidatingTextWatcher
 import com.example.dmalinovschi.viewModels.Ingredients.IngredientsListRowModel
+import kotlinx.android.synthetic.main.create_ingrediant_activity.*
 
 
 open class CreateIngredientActivity : IngredientsActivity() {
-    private lateinit var textInputTitle: TextInputLayout
-    private lateinit var textInputProtein: TextInputLayout
-    private lateinit var textInputCarbs: TextInputLayout
-    private lateinit var textInputFats: TextInputLayout
-    private lateinit var textInputCcal: TextInputLayout
-    internal lateinit var floatingActionButton: FloatingActionButton
     private lateinit var inputAdapter: TextInputLayoutAdapter
-
-    internal lateinit var inputTitle: TextInputEditText
-    internal lateinit var inputProtein: TextInputEditText
-    internal lateinit var inputCarbs: TextInputEditText
-    internal lateinit var inputFats: TextInputEditText
-    internal lateinit var inputCcal: TextInputEditText
+    private lateinit var inputValidator: InputValidator
 
     internal var inputValidationResult: Boolean = false
     internal lateinit var ingredientsModelService: IngredientsModelService
@@ -41,19 +29,20 @@ open class CreateIngredientActivity : IngredientsActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.create_ingrediant_activity)
         setUpToolbar(findViewById(R.id.back_toolbar))
-        setViewElements()
         inputAdapter = TextInputLayoutAdapter()
+        inputValidator = InputValidator(inputAdapter)
+        setViewElements()
         ingredientsModelService = IngredientsModelService(appDatabase)
     }
 
     internal fun getInputDetails(): IngredientsListRowModel {
         return IngredientsListRowModel(
                 0,
-                inputAdapter.getText(textInputTitle),
-                if (inputAdapter.getText(textInputProtein).isEmpty()) 0 else inputAdapter.getText(textInputProtein).toInt(),
-                if (inputAdapter.getText(textInputCarbs).isEmpty()) 0 else inputAdapter.getText(textInputCarbs).toInt(),
-                if (inputAdapter.getText(textInputFats).isEmpty()) 0 else inputAdapter.getText(textInputFats).toInt(),
-                if (inputAdapter.getText(textInputCcal).isEmpty()) 0 else inputAdapter.getText(textInputCcal).toInt()
+                inputAdapter.getText(ingredient_title_edit_layout),
+                if (inputAdapter.getText(ingredient_protein_edit_layout).isEmpty()) 0 else inputAdapter.getText(ingredient_protein_edit_layout).toInt(),
+                if (inputAdapter.getText(ingredient_carbs_edit_layout).isEmpty()) 0 else inputAdapter.getText(ingredient_carbs_edit_layout).toInt(),
+                if (inputAdapter.getText(ingredient_fats_edit_layout).isEmpty()) 0 else inputAdapter.getText(ingredient_fats_edit_layout).toInt(),
+                if (inputAdapter.getText(ingredient_ccal_edit_layout).isEmpty()) 0 else inputAdapter.getText(ingredient_ccal_edit_layout).toInt()
         )
     }
 
@@ -73,36 +62,23 @@ open class CreateIngredientActivity : IngredientsActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-
     private fun setViewElements() {
-        textInputTitle = findViewById(R.id.ingredient_title_edit_layout)
-        textInputProtein = findViewById(R.id.ingredient_protein_edit_layout)
-        textInputCarbs = findViewById(R.id.ingredient_carbs_edit_layout)
-        textInputFats = findViewById(R.id.ingredient_fats_edit_layout)
-        textInputCcal = findViewById(R.id.ingredient_ccal_edit_layout)
-        floatingActionButton = findViewById(R.id.save_ingredient_fab)
+        save_ingredient_fab.setOnClickListener { confirmInput() }
 
-        inputTitle = findViewById(R.id.ingredient_title_edit_text)
-        inputProtein = findViewById(R.id.ingredient_protein_edit_text)
-        inputCarbs = findViewById(R.id.ingredient_carbs_edit_text)
-        inputFats = findViewById(R.id.ingredient_fats_edit_text)
-        inputCcal = findViewById(R.id.ingredient_ccal_edit_text)
-
-        floatingActionButton.setOnClickListener { confirmInput() }
-        inputTitle.addTextChangedListener(TextValidator(::validateTitle))
-        inputProtein.addTextChangedListener(TextValidator(::validateProtein))
-        inputCarbs.addTextChangedListener(TextValidator(::validateCarbs))
-        inputFats.addTextChangedListener(TextValidator(::validateFat))
-        inputCcal.addTextChangedListener(TextValidator(::validateCcal))
+        ingredient_title_edit_text.addTextChangedListener(ValidatingTextWatcher(inputValidator::validateTitle, ingredient_title_edit_layout))
+        ingredient_protein_edit_text.addTextChangedListener(ValidatingTextWatcher(inputValidator::validateMacronutrients, ingredient_protein_edit_layout))
+        ingredient_carbs_edit_text.addTextChangedListener(ValidatingTextWatcher(inputValidator::validateMacronutrients, ingredient_carbs_edit_layout))
+        ingredient_fats_edit_text.addTextChangedListener(ValidatingTextWatcher(inputValidator::validateMacronutrients, ingredient_fats_edit_layout))
+        ingredient_ccal_edit_text.addTextChangedListener(ValidatingTextWatcher(inputValidator::validateCcal, ingredient_ccal_edit_layout))
     }
 
     internal open fun confirmInput() {
-        if (!validateTitle() and !validateProtein() and !validateCarbs() and !validateCcal() and !validateFat()) {
+        if (!validateInput()) {
             inputValidationResult = false
         } else {
-            if (validateTitle() and validateProtein() and validateCarbs() and validateCcal() and validateFat()) {
+            if (validateInput()) {
                 inputValidationResult = true
-                var inputIngredientDetails: IngredientsListRowModel = getInputDetails()
+                val inputIngredientDetails: IngredientsListRowModel = getInputDetails()
                 ingredientsModelService.buildIngredientFromInput(inputIngredientDetails)
 
                 val intent = Intent(this, IngredientsActivity::class.java)
@@ -112,82 +88,11 @@ open class CreateIngredientActivity : IngredientsActivity() {
         }
     }
 
-    internal fun validateTitle(): Boolean {
-        val title = inputAdapter.getText(textInputTitle)
-        if (title.isEmpty()) {
-            textInputTitle.error = "Title can't be empty"
-            return false
-        } else if (title.length > 30) {
-            textInputTitle.error = "Title can't be longer than 50"
-            return false
-        } else {
-            textInputTitle.error = null
-            return true
-        }
-    }
-
-    internal fun validateProtein(): Boolean {
-        var protein = inputAdapter.getText(textInputProtein)
-
-        if (protein.isEmpty()) {
-            textInputProtein.error = null
-            return true
-        } else {
-            if (Integer.parseInt(protein) > 100) {
-                textInputProtein.error = "It cant be that much"
-                return false
-            } else {
-                textInputProtein.error = null
-                return true
-            }
-        }
-    }
-
-    internal fun validateCarbs(): Boolean {
-        val carbs = inputAdapter.getText(textInputCarbs)
-        if (carbs.isEmpty()) {
-            textInputCarbs.error = null
-            return true
-        } else {
-            if (Integer.parseInt(carbs) > 100) {
-                textInputCarbs.error = "It cant be that much"
-                return false
-            } else {
-                textInputCarbs.error = null
-                return true
-            }
-        }
-    }
-
-    internal fun validateFat(): Boolean {
-        val fats = inputAdapter.getText(textInputFats)
-        if (fats.isEmpty()) {
-            textInputFats.error = null
-            return true
-        } else {
-            if (Integer.parseInt(fats) > 100) {
-                textInputFats.error = "It cant be that much"
-                return false
-            } else {
-                textInputFats.error = null
-                return true
-            }
-        }
-    }
-
-    internal fun validateCcal(): Boolean {
-        val ccal = inputAdapter.getText(textInputCcal)
-        if (ccal.isEmpty()) {
-            textInputCcal.error = null
-            return true
-        } else {
-            if (Integer.parseInt(ccal) > 500) {
-                textInputCcal.error = "It cant be that much"
-                return false
-            } else {
-                textInputCcal.error = null
-                return true
-            }
-        }
+    internal fun validateInput(): Boolean {
+        return ((inputValidator.validateTitle(ingredient_title_edit_layout)) &&
+                (inputValidator.validateMacronutrients(ingredient_protein_edit_layout)) &&
+                (inputValidator.validateMacronutrients(ingredient_carbs_edit_layout)) &&
+                (inputValidator.validateMacronutrients(ingredient_fats_edit_layout)) &&
+                (inputValidator.validateCcal(ingredient_ccal_edit_layout)))
     }
 }
