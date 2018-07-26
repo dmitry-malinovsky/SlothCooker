@@ -7,12 +7,11 @@ import android.support.design.widget.TextInputEditText
 import android.support.design.widget.TextInputLayout
 import android.support.v4.app.NavUtils
 import android.support.v7.widget.Toolbar
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.MenuItem
 import com.example.dmalinovschi.adapters.TextInputLayoutAdapter
-import com.example.dmalinovschi.persistance.dao.impl.IngredientDaoImpl
 import com.example.dmalinovschi.playground.R
+import com.example.dmalinovschi.services.IngredientsModelService
+import com.example.dmalinovschi.utils.TextValidator
 import com.example.dmalinovschi.viewModels.Ingredients.IngredientsListRowModel
 
 
@@ -32,6 +31,7 @@ open class CreateIngredientActivity : IngredientsActivity() {
     internal lateinit var inputCcal: TextInputEditText
 
     internal var inputValidationResult: Boolean = false
+    internal lateinit var ingredientsModelService: IngredientsModelService
 
     companion object {
         val NEW_INGREDIENT_KEY = "NEW INGREDIENT"
@@ -43,6 +43,7 @@ open class CreateIngredientActivity : IngredientsActivity() {
         setUpToolbar(findViewById(R.id.back_toolbar))
         setViewElements()
         inputAdapter = TextInputLayoutAdapter()
+        ingredientsModelService = IngredientsModelService(appDatabase)
     }
 
     internal fun getInputDetails(): IngredientsListRowModel {
@@ -88,62 +89,21 @@ open class CreateIngredientActivity : IngredientsActivity() {
         inputCcal = findViewById(R.id.ingredient_ccal_edit_text)
 
         floatingActionButton.setOnClickListener { confirmInput() }
-
-        inputTitle.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
-            override fun onTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
-            override fun afterTextChanged(editable: Editable) {
-                validateTitle()
-            }
-        })
-
-        inputProtein.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
-            override fun onTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
-            override fun afterTextChanged(editable: Editable) {
-                validateProtein()
-            }
-        })
-
-        inputCarbs.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
-            override fun onTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
-            override fun afterTextChanged(editable: Editable) {
-                validateCarbs()
-            }
-        })
-
-        inputFats.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
-            override fun onTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
-            override fun afterTextChanged(editable: Editable) {
-                validateFat()
-            }
-        })
-
-        inputCcal.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
-            override fun onTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
-            override fun afterTextChanged(editable: Editable) {
-                validateCcal()
-            }
-        })
+        inputTitle.addTextChangedListener(TextValidator(::validateTitle))
+        inputProtein.addTextChangedListener(TextValidator(::validateProtein))
+        inputCarbs.addTextChangedListener(TextValidator(::validateCarbs))
+        inputFats.addTextChangedListener(TextValidator(::validateFat))
+        inputCcal.addTextChangedListener(TextValidator(::validateCcal))
     }
 
     internal open fun confirmInput() {
-        val ingredientDao = IngredientDaoImpl(appDatabase)
         if (!validateTitle() and !validateProtein() and !validateCarbs() and !validateCcal() and !validateFat()) {
             inputValidationResult = false
         } else {
             if (validateTitle() and validateProtein() and validateCarbs() and validateCcal() and validateFat()) {
                 inputValidationResult = true
                 var inputIngredientDetails: IngredientsListRowModel = getInputDetails()
-                ingredientDao.addIngredient(inputIngredientDetails.title,
-                        inputIngredientDetails.protein,
-                        inputIngredientDetails.carbs,
-                        inputIngredientDetails.fat,
-                        inputIngredientDetails.ccal)
-
+                ingredientsModelService.buildIngredientFromInput(inputIngredientDetails)
 
                 val intent = Intent(this, IngredientsActivity::class.java)
                 intent.putExtra(NEW_INGREDIENT_KEY, inputIngredientDetails)

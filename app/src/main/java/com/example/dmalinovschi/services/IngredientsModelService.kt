@@ -1,11 +1,15 @@
 package com.example.dmalinovschi.services
 
+import com.example.dmalinovschi.activities.MainActivity
 import com.example.dmalinovschi.persistance.AppDatabase
+import com.example.dmalinovschi.persistance.dao.impl.IngredientDaoImpl
 import com.example.dmalinovschi.persistance.models.Ingredients
 import com.example.dmalinovschi.viewModels.Ingredients.IngredientsListModel
 import com.example.dmalinovschi.viewModels.Ingredients.IngredientsListRowModel
 
 class IngredientsModelService(var appDatabase: AppDatabase) {
+    val ingredientDao = IngredientDaoImpl(MainActivity.appDatabase)
+
     public fun buildIngredientModelList(): IngredientsListModel {
         val temp: MutableList<IngredientsListRowModel> = mutableListOf()
         val ingredients = getAllIngredients()!!
@@ -26,6 +30,16 @@ class IngredientsModelService(var appDatabase: AppDatabase) {
     }
 
     private fun getAllIngredients(): List<Ingredients>? {
-        return appDatabase.ingredientModel().allIngredients
+        return ingredientDao.allIngredients
+    }
+
+    public fun buildIngredientFromInput(ingredientInput: IngredientsListRowModel) {
+        ingredientDao.addIngredient(
+                ingredientInput.title,
+                ingredientInput.protein,
+                ingredientInput.carbs,
+                ingredientInput.fat,
+                ingredientInput.ccal
+        )
     }
 }

@@ -1,17 +1,14 @@
 package com.example.dmalinovschi.utils
 
 import android.text.Editable
-import android.widget.TextView
 import android.text.TextWatcher
+import kotlin.reflect.KFunction0
 
 
-abstract class TextValidator(private val textView: TextView) : TextWatcher {
-
-    abstract fun validate(textView: TextView, text: String)
+class TextValidator(var validator: KFunction0<Boolean>) : TextWatcher {
 
     override fun afterTextChanged(s: Editable) {
-        val text = textView.text.toString()
-        validate(textView, text)
+        validator()
     }
 
     override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) { /* Don't care */
