@@ -6,25 +6,30 @@ import android.support.v4.app.NavUtils
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
+import android.view.View
 import com.example.dmalinovschi.adapters.CreateRecipeListAdapter
+import com.example.dmalinovschi.adapters.TextInputLayoutAdapter
 import com.example.dmalinovschi.playground.R
 import com.example.dmalinovschi.services.CreateRecipeActionsModelService
-import com.example.dmalinovschi.viewModels.RecipeDetails.CreateRecipe.CreateRecipeActionModel
-import com.example.dmalinovschi.viewModels.RecipeDetails.CreateRecipe.CreateRecipeActionsModel
+import com.example.dmalinovschi.utils.InputValidator
+import kotlinx.android.synthetic.main.create_ingrediant_activity.*
 import kotlinx.android.synthetic.main.create_recipe_activity.*
 
 class CreateRecipeActivity : RecipesActivity() {
-    public var createRecipeService = CreateRecipeActionsModelService()
+    private var createRecipeService = CreateRecipeActionsModelService()
+    internal lateinit var inputValidator: InputValidator
+    internal lateinit var inputAdapter: TextInputLayoutAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.create_recipe_activity)
         setDatabase(this)
         setUpToolbar(findViewById(R.id.back_toolbar))
-
+        inputAdapter = TextInputLayoutAdapter()
+        inputValidator = InputValidator(inputAdapter)
         val recipeActions = createRecipeService.buileEmptyRecipeActions()
 
-        val createRecipeListAdapter = CreateRecipeListAdapter(recipeActions)
+        val createRecipeListAdapter = CreateRecipeListAdapter(recipeActions, inputValidator)
         create_recipe_recycle_view.adapter = createRecipeListAdapter
         create_recipe_recycle_view.layoutManager = LinearLayoutManager(this)
 
@@ -40,6 +45,15 @@ class CreateRecipeActivity : RecipesActivity() {
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
+    }
+
+    internal fun validateInput(view : View) {
+        view
+//        return ((inputValidator.validateTitle(ingredient_title_edit_layout)) &&
+//                (inputValidator.validateMacronutrients(ingredient_protein_edit_layout)) &&
+//                (inputValidator.validateMacronutrients(ingredient_carbs_edit_layout)) &&
+//                (inputValidator.validateMacronutrients(ingredient_fats_edit_layout)) &&
+//                (inputValidator.validateCcal(ingredient_ccal_edit_layout)))
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
