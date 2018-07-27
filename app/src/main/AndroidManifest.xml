@@ -9,9 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name="com.example.dmalinovschi.activities.MainActivity">
+        <activity android:name="com.example.dmalinovschi.activities.MainActivity"/>
+        <activity android:name="com.example.dmalinovschi.activities.IngredientMainActivity"/>
 
-        </activity>
+
 
         <activity android:name="com.example.dmalinovschi.activities.RecipesActivity"
             android:launchMode="singleTop"
