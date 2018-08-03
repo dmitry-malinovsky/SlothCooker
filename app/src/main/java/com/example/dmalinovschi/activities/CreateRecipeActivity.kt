@@ -2,6 +2,7 @@ package com.example.dmalinovschi.activities
 
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
+import android.support.design.widget.TextInputLayout
 import android.support.v4.app.NavUtils
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
@@ -12,7 +13,6 @@ import com.example.dmalinovschi.adapters.TextInputLayoutAdapter
 import com.example.dmalinovschi.playground.R
 import com.example.dmalinovschi.services.CreateRecipeActionsModelService
 import com.example.dmalinovschi.utils.InputValidator
-import kotlinx.android.synthetic.main.create_ingrediant_activity.*
 import kotlinx.android.synthetic.main.create_recipe_activity.*
 
 class CreateRecipeActivity : RecipesActivity() {
@@ -29,15 +29,24 @@ class CreateRecipeActivity : RecipesActivity() {
         inputValidator = InputValidator(inputAdapter)
         val recipeActions = createRecipeService.buileEmptyRecipeActions()
 
-        val createRecipeListAdapter = CreateRecipeListAdapter(recipeActions, inputValidator)
+        var createRecipeListAdapter = CreateRecipeListAdapter(recipeActions, inputValidator)
         create_recipe_recycle_view.adapter = createRecipeListAdapter
         create_recipe_recycle_view.layoutManager = LinearLayoutManager(this)
 
         val fab = findViewById<FloatingActionButton>(R.id.add_recipe_action)
+        val saveRecipe = save_recipe_button
+
         fab.setOnClickListener {
             recipeActions.actions.add(createRecipeService.buildEmptyRecipeAction())
             create_recipe_recycle_view.adapter.notifyItemInserted(recipeActions.actions.size)
             create_recipe_recycle_view.adapter.notifyDataSetChanged()
+            create_recipe_recycle_view.setItemViewCacheSize(recipeActions.actions.size)
+        }
+
+        saveRecipe.setOnClickListener {
+            for (i in 0 until recipeActions.actions.size) {
+                createRecipeListAdapter.recipeActions.actions[i]
+            }
         }
     }
 
@@ -47,8 +56,15 @@ class CreateRecipeActivity : RecipesActivity() {
         supportActionBar!!.setDisplayShowHomeEnabled(true)
     }
 
-    internal fun validateInput(view : View) {
-        view
+    internal fun validateAllActions() {
+
+//        for (i in 0 until create_recipe_recycle_view.childCount) {
+//            inputValidator.validateTitle(create_recipe_recycle_view.findViewHolderForLayoutPosition(i).itemView.findViewById<TextInputLayout>(R.id.recipe_action_edit_layout))
+//        }
+
+    }
+
+    internal fun validateInput(view: View) {
 //        return ((inputValidator.validateTitle(ingredient_title_edit_layout)) &&
 //                (inputValidator.validateMacronutrients(ingredient_protein_edit_layout)) &&
 //                (inputValidator.validateMacronutrients(ingredient_carbs_edit_layout)) &&
