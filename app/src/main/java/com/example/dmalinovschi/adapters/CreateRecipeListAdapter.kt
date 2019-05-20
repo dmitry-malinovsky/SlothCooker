@@ -9,14 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.dmalinovschi.playground.R
-import com.example.dmalinovschi.playground.R.id.*
 import com.example.dmalinovschi.utils.InputValidator
 import com.example.dmalinovschi.utils.ValidatingTextWatcher
-
 import com.example.dmalinovschi.viewModels.RecipeDetails.CreateRecipe.CreateRecipeActionsModel
-import kotlinx.android.synthetic.main.create_ingrediant_activity.*
 import kotlinx.android.synthetic.main.create_recipe_row.view.*
-import kotlinx.android.synthetic.main.recipe_preparation_step_row.view.*
 
 class CreateRecipeListAdapter(public var recipeActions: CreateRecipeActionsModel, var inputValidator: InputValidator) :
         RecyclerView.Adapter<CreateRecipeListAdapter.CreateRecipeActionViewHolder>() {
@@ -96,13 +92,13 @@ class CreateRecipeListAdapter(public var recipeActions: CreateRecipeActionsModel
     class CreateRecipeActionViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val ingredientActionText = view.findViewById<TextInputEditText>(R.id.recipe_action_edit_text)
         val ingredientActionLayout = view.findViewById<TextInputLayout>(R.id.recipe_action_edit_layout)
-        val ingredientText =  view.findViewById<TextInputEditText>(R.id.ingredient_edit_text)
+        val ingredientText = view.findViewById<TextInputEditText>(R.id.ingredient_edit_text)
         val ingredienLayout = view.findViewById<TextInputLayout>(R.id.ingredient_edit_layout)
 
-        val ingredienWeightText =  view.findViewById<TextInputEditText>(R.id.ingredient_weight_edit_text)
+        val ingredienWeightText = view.findViewById<TextInputEditText>(R.id.ingredient_weight_edit_text)
         val ingredienWeightLayout = view.findViewById<TextInputLayout>(R.id.ingredient_weight_layout)
 
-        val ingredientMeasurementText =  view.findViewById<TextInputEditText>(R.id.ingredient_measurement_edit_text)
+        val ingredientMeasurementText = view.findViewById<TextInputEditText>(R.id.ingredient_measurement_edit_text)
         val ingredientMeasurementLayout = view.findViewById<TextInputLayout>(R.id.ingredient_measurement_layout)
 
     }
