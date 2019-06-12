@@ -21,4 +21,6 @@ class UpdateIngredientActivity : CreateIngredientActivity() {
         ingredient_fats_edit_text.setText(ingredient.fat.toString())
         ingredient_ccal_edit_text.setText(ingredient.ccal.toString())
     }
+
+    // override confirm input function
 }

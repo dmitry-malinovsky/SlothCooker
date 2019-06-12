@@ -14,6 +14,7 @@ import com.example.dmalinovschi.playground.R
 import com.example.dmalinovschi.services.CreateRecipeActionsModelService
 import com.example.dmalinovschi.utils.InputValidator
 import kotlinx.android.synthetic.main.create_recipe_activity.*
+import kotlinx.android.synthetic.main.create_recipe_row.*
 
 class CreateRecipeActivity : RecipesActivity() {
     private var createRecipeService = CreateRecipeActionsModelService()
@@ -33,10 +34,10 @@ class CreateRecipeActivity : RecipesActivity() {
         create_recipe_recycle_view.adapter = createRecipeListAdapter
         create_recipe_recycle_view.layoutManager = LinearLayoutManager(this)
 
-        val fab = findViewById<FloatingActionButton>(R.id.add_recipe_action)
+        val addRecipeStepFab = findViewById<FloatingActionButton>(R.id.add_recipe_action)
         val saveRecipe = save_recipe_button
 
-        fab.setOnClickListener {
+        addRecipeStepFab.setOnClickListener {
             recipeActions.actions.add(createRecipeService.buildEmptyRecipeAction())
             create_recipe_recycle_view.adapter.notifyItemInserted(recipeActions.actions.size)
             create_recipe_recycle_view.adapter.notifyDataSetChanged()
@@ -44,9 +45,7 @@ class CreateRecipeActivity : RecipesActivity() {
         }
 
         saveRecipe.setOnClickListener {
-            for (i in 0 until recipeActions.actions.size) {
-                createRecipeListAdapter.recipeActions.actions[i]
-            }
+            validateAllActions()
         }
     }
 
@@ -57,19 +56,19 @@ class CreateRecipeActivity : RecipesActivity() {
     }
 
     internal fun validateAllActions() {
-
-//        for (i in 0 until create_recipe_recycle_view.childCount) {
-//            inputValidator.validateTitle(create_recipe_recycle_view.findViewHolderForLayoutPosition(i).itemView.findViewById<TextInputLayout>(R.id.recipe_action_edit_layout))
-//        }
-
+        for (i in 0 until create_recipe_recycle_view.childCount) {
+            validateInput(create_recipe_recycle_view.findViewHolderForLayoutPosition(i).itemView.
+                    findViewById<TextInputLayout>(R.id.recipe_action_edit_layout))
+        }
     }
 
-    internal fun validateInput(view: View) {
-//        return ((inputValidator.validateTitle(ingredient_title_edit_layout)) &&
-//                (inputValidator.validateMacronutrients(ingredient_protein_edit_layout)) &&
-//                (inputValidator.validateMacronutrients(ingredient_carbs_edit_layout)) &&
-//                (inputValidator.validateMacronutrients(ingredient_fats_edit_layout)) &&
-//                (inputValidator.validateCcal(ingredient_ccal_edit_layout)))
+    internal fun validateInput(view: View): Boolean {
+        return ((inputValidator.validateTitle(recipe_title_edit_layout)) &&
+                (inputValidator.validateAction(recipe_action_edit_layout)) &&
+                (inputValidator.validateIngredient(ingredient_edit_layout)) &&
+                (inputValidator.validateWeight(ingredient_weight_layout)) &&
+                (inputValidator.validateMeasurement(ingredient_measurement_layout)))
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

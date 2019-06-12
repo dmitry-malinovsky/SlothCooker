@@ -65,7 +65,9 @@ public class DatabaseInitialiser {
         combinationDao.addRecipeIngredientCombination(appDatabase, 2, "Add",ingredient3, recipe2, 300, MeasurementType.GR);
 
         recipesDao.updateNutritionValueForRecipe(recipe);
+        recipesDao.updateNutritionValueForRecipe(recipe2);
         recipesDao.getAllRecipeIngredientsByRecipe(recipe);
+        recipesDao.getAllRecipeIngredientsByRecipe(recipe2);
     }
 
     private static class PolulateDbAsync extends AsyncTask<Void, Void, Void> {
