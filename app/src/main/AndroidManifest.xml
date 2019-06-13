@@ -10,9 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name="com.example.dmalinovschi.activities.MainActivity"/>
-        <activity android:name="com.example.dmalinovschi.activities.IngredientMainActivity"/>
-
-
 
         <activity android:name="com.example.dmalinovschi.activities.RecipesActivity"
             android:launchMode="singleTop"
@@ -39,15 +36,6 @@
         <meta-data android:name="android.support.PARENT_ACTIVITY"
             android:value="com.example.dmalinovschi.activities.RecipesActivity"/>
          </activity>
-
-        <activity
-            android:name="com.example.dmalinovschi.activities.CreateIngredientActivity"
-            android:label="Add ingredient"
-            android:windowSoftInputMode="stateVisible|stateAlwaysVisible|adjustResize"
-            android:launchMode="singleTop">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.dmalinovschi.activities.IngredientsActivity"/>
-        </activity>
 
         <activity
             android:name="com.example.dmalinovschi.activities.UpdateIngredientActivity"

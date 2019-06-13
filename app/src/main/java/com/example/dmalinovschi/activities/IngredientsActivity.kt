@@ -29,7 +29,7 @@ open class IngredientsActivity : MainActivity() {
 
         val fab = findViewById<FloatingActionButton>(R.id.add_ingredient_fab)
         fab.setOnClickListener {
-            startActivity(Intent(this, CreateIngredientActivity::class.java))
+            startActivity(Intent(this, UpdateIngredientActivity::class.java))
         }
     }
 

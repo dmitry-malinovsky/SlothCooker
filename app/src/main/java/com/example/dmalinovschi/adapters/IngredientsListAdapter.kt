@@ -55,13 +55,13 @@ class IngredientsListAdapter(private var data: AppDatabase, var ingredientsListM
 
 class IngredientsListViewHolder(view: View, var ingredientDetails: Ingredients? = null) : RecyclerView.ViewHolder(view) {
     companion object {
-        val RECIPE_KEY = "INGREDIENT"
+        val INGREDIENT_KEY = "SELECTED INGREDIENT"
     }
 
     init {
         view.setOnClickListener {
             val intent = Intent(view.context, UpdateIngredientActivity::class.java)
-            intent.putExtra(RECIPE_KEY, ingredientDetails)
+            intent.putExtra(INGREDIENT_KEY, ingredientDetails)
             view.context.startActivity(intent)
         }
     }

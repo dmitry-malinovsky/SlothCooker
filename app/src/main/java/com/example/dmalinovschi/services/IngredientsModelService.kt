@@ -21,7 +21,8 @@ class IngredientsModelService(var appDatabase: AppDatabase) {
     }
 
     public fun buildIngredientRowModel(ingredient: Ingredients): IngredientsListRowModel {
-        return IngredientsListRowModel(ingredient.ingredientId,
+        return IngredientsListRowModel(
+                ingredient.ingredientId,
                 ingredient.ingredientTitle,
                 ingredient.protein,
                 ingredient.carb,
@@ -41,5 +42,16 @@ class IngredientsModelService(var appDatabase: AppDatabase) {
                 ingredientInput.fat,
                 ingredientInput.ccal
         )
+    }
+
+    public fun updateIngredientByIdFromInput(id: Int, ingredientInput: IngredientsListRowModel) {
+        val ingredient = ingredientDao.getIngredientById(id);
+        ingredient.ingredientTitle = ingredientInput.title;
+        ingredient.protein = ingredientInput.protein
+        ingredient.carb = ingredientInput.carbs
+        ingredient.fat = ingredientInput.fat
+        ingredient.ccal = ingredientInput.ccal
+
+        ingredientDao.updateIngredient(ingredient)
     }
 }
