@@ -9,11 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name="com.example.dmalinovschi.activities.MainActivity"/>
+        <activity android:name="com.example.dmalinovschi.activities.MainActivity" />
 
-        <activity android:name="com.example.dmalinovschi.activities.RecipesActivity"
-            android:launchMode="singleTop"
-            android:label="Recipes">
+        <activity
+            android:name="com.example.dmalinovschi.activities.RecipesActivity"
+            android:label="Recipes"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -23,35 +24,39 @@
         <activity
             android:name="com.example.dmalinovschi.activities.CreateRecipeActivity"
             android:label="Add recipe"
-            android:windowSoftInputMode="stateVisible|stateAlwaysVisible|adjustResize"
-            android:launchMode="singleTop">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.dmalinovschi.activities.RecipesActivity"/>
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="stateVisible|stateAlwaysVisible|adjustResize">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.dmalinovschi.activities.RecipesActivity" />
         </activity>
 
         <activity
             android:name="com.example.dmalinovschi.activities.RecipeDetailsActivity"
             android:label="Recipe Details"
             android:launchMode="singleTop">
-        <meta-data android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.example.dmalinovschi.activities.RecipesActivity"/>
-         </activity>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.dmalinovschi.activities.RecipesActivity" />
+        </activity>
 
         <activity
-            android:name="com.example.dmalinovschi.activities.UpdateIngredientActivity"
+            android:name="com.example.dmalinovschi.activities.ManageIngredientActivity"
             android:label="Update Ingredient"
-            android:windowSoftInputMode="stateHidden|stateAlwaysVisible|adjustResize"
-            android:launchMode="singleTop">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.dmalinovschi.activities.IngredientsActivity"/>
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="stateHidden|stateAlwaysVisible|adjustResize">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.dmalinovschi.activities.IngredientsActivity" />
         </activity>
 
         <activity
             android:name="com.example.dmalinovschi.activities.IngredientsActivity"
             android:label="Ingredients"
             android:launchMode="singleTop">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.dmalinovschi.activities.RecipesActivity"/>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.dmalinovschi.activities.RecipesActivity" />
         </activity>
 
         <meta-data

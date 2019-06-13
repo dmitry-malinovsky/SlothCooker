@@ -12,9 +12,9 @@ import com.example.dmalinovschi.services.IngredientsModelService
 import com.example.dmalinovschi.utils.InputValidator
 import com.example.dmalinovschi.utils.ValidatingTextWatcher
 import com.example.dmalinovschi.viewModels.Ingredients.IngredientsListRowModel
-import kotlinx.android.synthetic.main.create_ingrediant_activity.*
+import kotlinx.android.synthetic.main.manage_ingredient_activity.*
 
-open class UpdateIngredientActivity : MainActivity() {
+open class ManageIngredientActivity : MainActivity() {
     private lateinit var inputAdapter: TextInputLayoutAdapter
     private lateinit var inputValidator: InputValidator
     private lateinit var ingredient: Ingredients
@@ -22,13 +22,9 @@ open class UpdateIngredientActivity : MainActivity() {
     private var inputValidationResult: Boolean = false
     private lateinit var ingredientsModelService: IngredientsModelService
 
-    companion object {
-        val NEW_INGREDIENT_KEY = "NEW INGREDIENT"
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.create_ingrediant_activity)
+        setContentView(R.layout.manage_ingredient_activity)
         save_ingredient_fab.setImageDrawable(resources.getDrawable(R.drawable.ic_baseline_edit_24px))
         inputAdapter = TextInputLayoutAdapter()
         inputValidator = InputValidator(inputAdapter)
@@ -61,7 +57,7 @@ open class UpdateIngredientActivity : MainActivity() {
         )
     }
 
-    internal fun setUpToolbar(toolbar: Toolbar) {
+    private fun setUpToolbar(toolbar: Toolbar) {
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
@@ -99,8 +95,6 @@ open class UpdateIngredientActivity : MainActivity() {
                 val inputIngredientDetails: IngredientsListRowModel = getInputDetails()
                 if (ingredient.ingredientId == 0) {
                     ingredientsModelService.buildIngredientFromInput(inputIngredientDetails)
-                    val intent = Intent(this, IngredientsActivity::class.java)
-                    intent.putExtra(NEW_INGREDIENT_KEY, inputIngredientDetails)
                 } else
                     ingredientsModelService.updateIngredientByIdFromInput(ingredient.ingredientId, inputIngredientDetails)
                 finish()

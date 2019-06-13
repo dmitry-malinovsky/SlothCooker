@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.dmalinovschi.activities.MainActivity
-import com.example.dmalinovschi.activities.UpdateIngredientActivity
+import com.example.dmalinovschi.activities.ManageIngredientActivity
 import com.example.dmalinovschi.persistance.AppDatabase
 import com.example.dmalinovschi.persistance.dao.impl.IngredientDaoImpl
 import com.example.dmalinovschi.persistance.models.Ingredients
@@ -60,7 +60,7 @@ class IngredientsListViewHolder(view: View, var ingredientDetails: Ingredients? 
 
     init {
         view.setOnClickListener {
-            val intent = Intent(view.context, UpdateIngredientActivity::class.java)
+            val intent = Intent(view.context, ManageIngredientActivity::class.java)
             intent.putExtra(INGREDIENT_KEY, ingredientDetails)
             view.context.startActivity(intent)
         }
