@@ -5,6 +5,7 @@ import com.example.dmalinovschi.persistance.AppDatabase;
 import com.example.dmalinovschi.persistance.models.Ingredients;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class IngredientDaoImpl {
     private static AppDatabase appDatabase;
@@ -21,6 +22,12 @@ public class IngredientDaoImpl {
         ingredient.setFat(fat);
         ingredient.setCcal(ccal);
         appDatabase.ingredientModel().addIngredient(ingredient);
+    }
+
+    public List<String> getAllIngredientNames(){
+        return getAllIngredients().stream()
+                .map(Ingredients::getIngredientTitle)
+                .collect(Collectors.toList());
     }
 
     public List<Ingredients> getAllIngredients(){ return appDatabase.ingredientModel().getAllIngredients();}

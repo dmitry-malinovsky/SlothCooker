@@ -30,7 +30,7 @@ class CreateRecipeActivity : RecipesActivity() {
         inputValidator = InputValidator(inputAdapter)
         val recipeActions = createRecipeService.buileEmptyRecipeActions()
 
-        var createRecipeListAdapter = CreateRecipeListAdapter(recipeActions, inputValidator)
+        var createRecipeListAdapter = CreateRecipeListAdapter(this,recipeActions, inputValidator)
         create_recipe_recycle_view.adapter = createRecipeListAdapter
         create_recipe_recycle_view.layoutManager = LinearLayoutManager(this)
 

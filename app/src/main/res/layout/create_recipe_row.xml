@@ -68,7 +68,7 @@
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent">
 
-                <android.support.design.widget.TextInputEditText
+                <AutoCompleteTextView
                     android:id="@+id/ingredient_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -76,8 +76,7 @@
                     android:fontFamily="@font/roboto"
                     android:hint="Ingredient"
                     android:inputType="textAutoComplete"
-                    android:maxLength="3"
-                    android:textSize="14sp" />
+                />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
